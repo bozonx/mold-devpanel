@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import './main.scss';
 
 export default class MoldDevPanel extends React.Component {
   constructor(params) {
@@ -7,8 +8,10 @@ export default class MoldDevPanel extends React.Component {
 
   render() {
     return (
-      <div>
-        12313
+      <div id="mold-devpanel">
+        <div id="mold-devpanel-inner">
+          ddfdfg
+        </div>
       </div>
     );
   }

@@ -49,3 +49,20 @@
     margin: 0;
   }
 }
+
+#mold-devpanel__structure {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+.mold-devpanel__primitive {
+  padding: 4px;
+  background: #f9f9e1;
+  border: 1px solid #d8d87c;
+}
+.mold-devpanel__container {
+  border-left: 1px solid #ccc;
+  padding: 2px;
+}
+.mold-devpanel__container-children {
+  margin-left: 10px;
+}

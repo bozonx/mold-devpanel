@@ -7,36 +7,56 @@ export default class MoldStructure extends React.Component {
 
     if (!window.appMold) throw new Error(`There isn't window.appMold!`);
     this.mold = window.appMold;
-    this.storage = this.mold.$getWholeStorageState();
+
+    this.mold.onAnyUpdate(() => {
+      this.setState({storage: this.mold.$getWholeStorageState()});
+    });
+
+    this.state = {
+      storage: this.mold.$getWholeStorageState(),
+    }
   }
 
-  recursivelyMap(containerOrArrayOrPrimitive) {
-    if (_.isPlainObject(containerOrArrayOrPrimitive)) {
-      return _.map(containerOrArrayOrPrimitive, (item, name) => {
-        return <div className="mold-devpanel__container">
-          <div>{name}: </div>
-          <div className="mold-devpanel__container-children">{this.recursivelyMap(item)}</div>
-        </div>
+  // TODO: правильней будет пройтись по схеме, тогда можно будет определить документы
+  // TODO: отсортировать примитивы вверх
+  // TODO: отсортировать по алфавиту
+  // TODO: поумолчанию прятать примитивы, начинающиеся на _
+  // TODO: подсвечивать несколько секунд последние изменившиеся элементы и их родителей, если они свернуты
+
+
+  recursivelyMap(containerOrArray) {
+    if (_.isPlainObject(containerOrArray)) {
+      return _.map(containerOrArray, (item, name) => {
+        if (_.isPlainObject(item) || _.isArray(item)) {
+          return <div className="mold-devpanel__container">
+            <div className="mold-devpanel__container-name">{name}: </div>
+            <div className="mold-devpanel__container-children">{this.recursivelyMap(item)}</div>
+          </div>
+        }
+        else {
+          return this.renderPrimitive(name, item);
+        }
+
       });
     }
-    else if (_.isArray(containerOrArrayOrPrimitive)) {
-      return _.map(containerOrArrayOrPrimitive, (item, index) => {
+    else if (_.isArray(containerOrArray)) {
+      return _.map(containerOrArray, (item, index) => {
         return <div>
-          <div>{index}: </div>
+          <div className="mold-devpanel__container-name">{index}: </div>
           <div>{this.recursivelyMap(item)}</div>
         </div>
       });
     }
-    else {
-      // primitive
-      return <div className="mold-devpanel__primitive">{containerOrArrayOrPrimitive}</div>;
-    }
+  }
+
+  renderPrimitive(name, value) {
+    return <div className="mold-devpanel__primitive">{name}: {value}</div>;
   }
 
   render() {
     return (
       <div id="mold-devpanel__structure">
-        {this.recursivelyMap(this.storage)}
+        {this.recursivelyMap(this.state.storage)}
       </div>
     );
   }

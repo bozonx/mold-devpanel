@@ -50,19 +50,29 @@
   }
 }
 
+
+////////// sturcture
 #mold-devpanel__structure {
   overflow-x: auto;
   overflow-y: auto;
+  font-size: 12px;
+  line-height: 12px;
+  box-sizing: border-box;
 }
 .mold-devpanel__primitive {
-  padding: 4px;
+  padding: 3px;
   background: #f9f9e1;
   border: 1px solid #d8d87c;
 }
 .mold-devpanel__container {
-  border-left: 1px solid #ccc;
-  padding: 2px;
+  //padding: 2px;
 }
 .mold-devpanel__container-children {
-  margin-left: 10px;
+  padding-left: 10px;
+  border-left: 1px solid #ccc;
+}
+.mold-devpanel__container-name {
+  padding: 8px 0 2px;
+  font-size: 11px;
+  line-height: 11px;
 }

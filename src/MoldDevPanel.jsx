@@ -19,7 +19,7 @@ export default class MoldDevPanel extends React.Component {
       <div>
         <div className={!this.state.open && 'mold-devpanel--hide'}>
           <Panel>
-            <SwitcherIcon type="close" onClick={() => this.setState({open: false})} />
+            <SwitcherIcon icon="close" onClick={() => this.setState({open: false})} />
             <h1>Mold development bar.</h1>
             <MoldStructure />
           </Panel>
@@ -27,7 +27,7 @@ export default class MoldDevPanel extends React.Component {
         <div id="mold-devpanel-openner"
              className={this.state.open && 'mold-devpanel--hide'}
              onClick={() => this.setState({open: true})}>
-          <SwitcherIcon type="open" />
+          <SwitcherIcon icon="open" />
         </div>
       </div>
     );

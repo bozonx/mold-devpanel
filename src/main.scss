@@ -15,3 +15,22 @@
 #mold-devpanel-inner {
   padding: 10px;
 }
+
+#mold-devpanel-openner {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 50px;
+  width: 50px;
+  z-index: 99999;
+  background: white;
+  opacity: 0.5;
+  border: 1px solid #ccc;
+}
+#mold-devpanel-openner:hover {
+  opacity: 1;
+}
+
+.mold-devpanel--hide {
+  display: none;
+}

@@ -26,6 +26,7 @@
   background: white;
   opacity: 0.5;
   border: 1px solid #ccc;
+  cursor: pointer;
 }
 #mold-devpanel-openner:hover {
   opacity: 1;
@@ -33,4 +34,18 @@
 
 .mold-devpanel--hide {
   display: none;
+}
+
+#mold-devpanel-header {
+  display: flex;
+}
+#mold-devpanel-closer {
+  cursor: pointer;
+}
+#mold-devpanel-header-h1 {
+  flex-grow: 1;
+  h1 {
+    font-size: 14px;
+    margin: 0;
+  }
 }

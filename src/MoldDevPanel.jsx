@@ -10,7 +10,7 @@ export default class MoldDevPanel extends React.Component {
     super(params);
 
     this.state = {
-      open: false,
+      open: true,
     };
   }
 
@@ -19,8 +19,14 @@ export default class MoldDevPanel extends React.Component {
       <div>
         <div className={!this.state.open && 'mold-devpanel--hide'}>
           <Panel>
-            <SwitcherIcon icon="close" onClick={() => this.setState({open: false})} />
-            <h1>Mold development bar.</h1>
+            <div id="mold-devpanel-header">
+              <div id="mold-devpanel-closer" onClick={() => this.setState({open: false})}>
+                <SwitcherIcon icon="close" />
+              </div>
+              <div id="mold-devpanel-header-h1">
+                <h1>Mold development bar.</h1>
+              </div>
+            </div>
             <MoldStructure />
           </Panel>
         </div>

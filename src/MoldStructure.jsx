@@ -28,7 +28,7 @@ export default class MoldStructure extends React.Component {
     if (_.isPlainObject(containerOrArray)) {
       return _.map(containerOrArray, (item, name) => {
         if (_.isPlainObject(item) || _.isArray(item)) {
-          return <div className="mold-devpanel__container">
+          return <div className="mold-devpanel__container" key={name}>
             <div className="mold-devpanel__container-name">{name}: </div>
             <div className="mold-devpanel__container-children">{this.recursivelyMap(item)}</div>
           </div>
@@ -41,7 +41,7 @@ export default class MoldStructure extends React.Component {
     }
     else if (_.isArray(containerOrArray)) {
       return _.map(containerOrArray, (item, index) => {
-        return <div>
+        return <div key={index}>
           <div className="mold-devpanel__container-name">{index}: </div>
           <div>{this.recursivelyMap(item)}</div>
         </div>
@@ -50,7 +50,7 @@ export default class MoldStructure extends React.Component {
   }
 
   renderPrimitive(name, value) {
-    return <div className="mold-devpanel__primitive">{name}: {value}</div>;
+    return <div key={name} className="mold-devpanel__primitive">{name}: {value}</div>;
   }
 
   render() {

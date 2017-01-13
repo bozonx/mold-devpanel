@@ -8,7 +8,7 @@ export default class MoldStructure extends React.Component {
     if (!window.appMold) throw new Error(`There isn't window.appMold!`);
     this.mold = window.appMold;
 
-    this.mold.onAnyUpdate(() => {
+    this.mold.onAnyChange(() => {
       this.setState({storage: this.mold.$getWholeStorageState()});
     });
 

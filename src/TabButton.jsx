@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 export default class TabButton extends React.Component {
   static propTypes = {
-    children: PropTypes.object,
+    children: PropTypes.string,
   };
 
   constructor(params) {
@@ -10,6 +10,6 @@ export default class TabButton extends React.Component {
   }
 
   render() {
-    return <button>{this.props.children}</button>;
+    return <span>{this.props.children}</span>;
   }
 }

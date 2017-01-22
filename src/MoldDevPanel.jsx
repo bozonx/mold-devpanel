@@ -40,18 +40,16 @@ export default class MoldDevPanel extends React.Component {
             </div>
 
             <Tab>
-              <TabButton>name1</TabButton>
-              <TabButton>name2</TabButton>
+              <TabButton>Mold</TabButton>
+              <TabButton>Schema</TabButton>
 
               <TabContent>
-                item1
+                <MoldStructure />
               </TabContent>
               <TabContent>
-                item2
+                <div>Schema</div>
               </TabContent>
             </Tab>
-
-            <MoldStructure />
           </Panel>
         </div>
         <div id="mold-devpanel-openner"

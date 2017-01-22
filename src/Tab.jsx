@@ -13,21 +13,27 @@ export default class Tab extends React.Component {
     this.contents = [];
 
     _.each(this.props.children, (item) => {
-      if (item.type.name == 'TabButton') this.buttons.push(item);
+      if (item.type.name == 'TabButton') {
+        this.buttons.push(item);
+      }
       else if (item.type.name == 'TabContent') this.contents.push(item);
-    })
+    });
+
+    this.state = {
+      current: 0,
+    };
   }
 
   render() {
-    return (
+    return <div>
       <div>
-        <div>
-          {_.map(this.buttons, (item) => <span>{item}</span>)}
-        </div>
-        <div>
-          {_.map(this.contents, (item) => <span>{item}</span>)}
-        </div>
+        {_.map(this.buttons, (item, index) =>
+          <span className={this.state.current !== index && 'mold-devpanel__hide'}>{item}</span>)}
       </div>
-    );
+      <div>
+        {_.map(this.contents, (item, index) =>
+          <div className={this.state.current !== index && 'mold-devpanel__hide'}>{item}</div>)}
+      </div>
+    </div>;
   }
 }

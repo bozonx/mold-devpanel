@@ -3,8 +3,7 @@ import _ from 'lodash';
 
 export default class StructDocument extends React.Component {
   static propTypes = {
-    documentMold: PropTypes.object,
-    documentSchema: PropTypes.object,
+    document: PropTypes.object,
   };
 
   constructor(params) {
@@ -21,7 +20,7 @@ export default class StructDocument extends React.Component {
 
   _updateNames() {
     const names = [];
-    _.each(this.props.documentMold, (item, name) => {
+    _.each(this.props.document.mold, (item, name) => {
       names.push(name);
     });
 
@@ -43,7 +42,7 @@ export default class StructDocument extends React.Component {
           {_.map(this.state.names, (name) => <li>
             <label>{name}</label>
             <div>
-              {this.props.documentMold[name]}
+              {this.props.document.mold[name]}
             </div>
           </li>)}
         </ul>

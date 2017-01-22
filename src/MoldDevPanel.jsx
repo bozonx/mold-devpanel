@@ -5,6 +5,9 @@ import './main.scss';
 import Panel from './Panel';
 import MoldStructure from './MoldStructure';
 import SwitcherIcon from './SwitcherIcon';
+import Tab from './Tab';
+import TabButton from './TabButton';
+import TabContent from './TabContent';
 
 export default class MoldDevPanel extends React.Component {
   constructor(params) {
@@ -35,6 +38,19 @@ export default class MoldDevPanel extends React.Component {
                 <h1>Mold development bar.</h1>
               </div>
             </div>
+
+            <Tab>
+              <TabButton>name1</TabButton>
+              <TabButton>name2</TabButton>
+
+              <TabContent>
+                item1
+              </TabContent>
+              <TabContent>
+                item2
+              </TabContent>
+            </Tab>
+
             <MoldStructure />
           </Panel>
         </div>

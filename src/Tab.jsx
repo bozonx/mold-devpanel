@@ -24,11 +24,16 @@ export default class Tab extends React.Component {
     };
   }
 
+  handleButtonClick(current) {
+    this.setState({current});
+  }
+
   render() {
     return <div>
-      <div>
+      <div className="mold-devpanel__tab_buttons">
         {_.map(this.buttons, (item, index) =>
-          <span className={this.state.current !== index && 'mold-devpanel__hide'}>{item}</span>)}
+          <button className={this.state.current === index && 'mold-devpanel__tab-active'}
+                  onClick={() => this.handleButtonClick(index)}>{item}</button>)}
       </div>
       <div>
         {_.map(this.contents, (item, index) =>

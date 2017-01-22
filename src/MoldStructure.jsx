@@ -3,6 +3,8 @@ import _ from 'lodash';
 
 import StructDocument from './StructDocument';
 
+import testSchema from './_testSchema';
+
 
 export default class MoldStructure extends React.Component {
   constructor(params) {
@@ -14,6 +16,11 @@ export default class MoldStructure extends React.Component {
     this.mold.onAnyChange(() => {
       this.setState({storage: this.mold.$getWholeStorageState()});
     });
+
+    //this.mold.$$schemaManager.getFullSchema()
+    this.schema = testSchema.schema;
+    //this.mold.$getWholeStorageState()
+    this.storage = testSchema.storage;
 
     // this.state = {
     //   storage: this.mold.$getWholeStorageState(),
@@ -56,12 +63,14 @@ export default class MoldStructure extends React.Component {
   recursiveSchema(schema, root, name) {
     if (!_.isPlainObject(schema)) return;
     if (schema.type == 'container') {
-      return this._renderContainer(schema, root, name);
+      return this._renderItemWrapper(name,
+        this._proceedPlainObject(schema.schema, _.trim(`${root}.schema`, '.')));
     }
     else if (schema.type == 'document') {
-      // TODO: взять инстанс по пути схемы
-      //return <StructDocument />
-      return <div>{name} : {root}</div>;
+      return this._renderItemWrapper(name, <StructDocument schema={schema}
+                                                           schemaRoot={root}
+                                                           name={name}
+                                                           fullStorage={this.storage} />);
     }
     else if (schema.type == 'documentsCollection') {
       return <div>{name} : {root}</div>;
@@ -79,21 +88,22 @@ export default class MoldStructure extends React.Component {
     });
   }
 
-  _renderContainer(schema, root, name) {
+  _renderItemWrapper(name, inner) {
     return <div className="mold-devpanel__container">
       <div className="mold-devpanel__container-name">{name}: </div>
       <div className="mold-devpanel__container-children">
-        {this._proceedPlainObject(schema.schema, _.trim(`${root}.schema`, '.'))}
+        {inner}
       </div>
     </div>;
   }
-
 
   render() {
     return (
       <div id="mold-devpanel__structure">
         {/*{this.recursivelyMap(this.state.storage)}*/}
-        {this.recursiveSchema(this.mold.$$schemaManager.getFullSchema(), '')}
+        <div>
+          {this.recursiveSchema(this.schema, '')}
+        </div>
       </div>
     );
   }

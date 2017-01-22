@@ -3,7 +3,10 @@ import _ from 'lodash';
 
 export default class StructDocument extends React.Component {
   static propTypes = {
-    document: PropTypes.object,
+    schema: PropTypes.object,
+    schemaRoot: PropTypes.string,
+    name: PropTypes.string,
+    fullStorage: PropTypes.object,
   };
 
   constructor(params) {
@@ -12,6 +15,9 @@ export default class StructDocument extends React.Component {
     this.state = {
       names: [],
     };
+
+    this.storageRoot = this.props.schemaRoot.replace(/\.schema/g, '');
+    this.storage = _.get(this.props.fullStorage, this.storageRoot);
   }
 
   componentWillMount() {
@@ -20,7 +26,8 @@ export default class StructDocument extends React.Component {
 
   _updateNames() {
     const names = [];
-    _.each(this.props.document.mold, (item, name) => {
+
+    _.each(this.storage, (item, name) => {
       names.push(name);
     });
 
@@ -28,7 +35,7 @@ export default class StructDocument extends React.Component {
     // TODO: отсортировать примитивы вверх
     // TODO: отсортировать по алфавиту
 
-    this.setState(names);
+    this.setState({names});
   }
 
   // TODO: поумолчанию прятать примитивы, начинающиеся на _
@@ -37,12 +44,12 @@ export default class StructDocument extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="mold-devpanel__document">
         <ul>
           {_.map(this.state.names, (name) => <li>
-            <label>{name}</label>
-            <div>
-              {this.props.document.mold[name]}
+            <div className="mold-devpanel__document_label">{name}: </div>
+            <div className="mold-devpanel__document_value">
+              {this.storage[name]}
             </div>
           </li>)}
         </ul>

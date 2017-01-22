@@ -1,3 +1,6 @@
+$structure-font-size: 11px;
+$structure-line-height: 12px;
+
 #mold-devpanel {
   position: fixed;
   top: 0;
@@ -74,10 +77,19 @@
 #mold-devpanel__structure {
   overflow-x: auto;
   overflow-y: auto;
-  font-size: 12px;
-  line-height: 12px;
+  font-size: $structure-font-size;
+  line-height: $structure-line-height;
   box-sizing: border-box;
 }
+.mold-devpanel__container-children {
+  padding-left: 10px;
+  border-left: 1px solid #ccc;
+}
+.mold-devpanel__container-name {
+  padding: 2px 0 2px;
+}
+
+// TODO: remove
 .mold-devpanel__primitive {
   padding: 3px;
   background: #f9f9e1;
@@ -86,16 +98,6 @@
 .mold-devpanel__container {
   //padding: 2px;
 }
-.mold-devpanel__container-children {
-  padding-left: 10px;
-  border-left: 1px solid #ccc;
-}
-.mold-devpanel__container-name {
-  padding: 8px 0 2px;
-  font-size: 11px;
-  line-height: 11px;
-}
-
 
 
 //////////////// TABS
@@ -113,4 +115,28 @@
 }
 .mold-devpanel__tab-active {
   background: white !important;
+}
+
+
+//////////////// Document
+.mold-devpanel__document {
+  & > ul {
+    border: 1px solid #d8d87c;
+    list-style: none;
+    margin: 0;
+    & > li {
+      font-size: 120%;
+      line-height: 120%;
+      padding: 3px;
+      background: #f9f9e1;
+      display: flex;
+      & > .mold-devpanel__document_label {
+        margin-right: 5px;
+      }
+      & > .mold-devpanel__document_value {
+        font-weight: bold;
+        //flex: 1;
+      }
+    }
+  }
 }

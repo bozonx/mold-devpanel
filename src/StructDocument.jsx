@@ -1,15 +1,11 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
-import { convertFromSchemaToLodash } from './helpers';
-
 
 export default class StructDocument extends React.Component {
   static propTypes = {
-    schema: PropTypes.object,
-    schemaRoot: PropTypes.string,
-    name: PropTypes.string,
-    fullStorage: PropTypes.object,
+    moldPath: PropTypes.string,
+    mold: PropTypes.object,
   };
 
   constructor(params) {
@@ -19,8 +15,8 @@ export default class StructDocument extends React.Component {
       names: [],
     };
 
-    this.storageRoot = convertFromSchemaToLodash(this.props.schemaRoot);
-    this.storage = _.get(this.props.fullStorage, this.storageRoot);
+    this.instance = this.props.mold.child(this.props.moldPath);
+    this.storage = this.instance.mold;
   }
 
   componentWillMount() {

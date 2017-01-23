@@ -14,12 +14,12 @@ export default class MoldDevPanel extends React.Component {
     super(props);
 
     // TODO: use real
-    //this.mold = window.appMold;
-
-    const schema = require('./_testSchema').default.schema;
-    const storage = require('./_testSchema').default.storage;
-    this.mold = require('../libs/mold').default({}, schema);
-    this.mold.$setWholeStorageState(storage);
+    this.mold = window.appMold;
+    // test data
+    // const schema = require('./_testSchema').default.schema;
+    // const storage = require('./_testSchema').default.storage;
+    // this.mold = require('../libs/mold').default({}, schema);
+    // this.mold.$setWholeStorageState(storage);
 
     const savedState = localStorage.getItem('mold-devpanel__open') == 'true';
 

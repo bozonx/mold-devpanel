@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 export default class ItemWrapper extends React.Component {
   static propTypes = {
     name: PropTypes.string,
-    children: PropTypes.array,
+    children: PropTypes.object,
   };
 
   constructor(props) {

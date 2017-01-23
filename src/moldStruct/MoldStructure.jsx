@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
 import ItemWrapper from '../ItemWrapper';
-import StructDocument from './StructDocument';
-import StructDocumetsCollection from './StructDocumetsCollection';
+import StructDocument from './Document';
+import StructDocumetsCollection from './DocumetsCollection';
 
 import { convertFromSchemaToLodash } from '../helpers';
 

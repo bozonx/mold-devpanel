@@ -6,6 +6,7 @@ export default class Document extends React.Component {
   static propTypes = {
     moldPath: PropTypes.string,
     mold: PropTypes.object,
+    storage: PropTypes.object,
   };
 
   constructor(props) {
@@ -16,7 +17,7 @@ export default class Document extends React.Component {
     };
 
     this.instance = this.props.mold.child(this.props.moldPath);
-    this.storage = this.instance.mold;
+    this.storage = (this.props.storage) ? this.props.storage : this.instance.mold;
   }
 
   componentWillMount() {
@@ -48,7 +49,7 @@ export default class Document extends React.Component {
           {_.map(this.state.names, (name) => <li key={name}>
             <div className="mold-devpanel__document_label">{name}: </div>
             <div className="mold-devpanel__document_value">
-              {this.storage[name]}
+              {_.truncate(this.storage[name], {length: 25})}
             </div>
           </li>)}
         </ul>

@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
 import ItemWrapper from '../ItemWrapper';
-import StructDocument from './StructDocument';
+import StructDocument from './Document';
 
 
 export default class DocumetsCollection extends React.Component {
@@ -18,25 +18,29 @@ export default class DocumetsCollection extends React.Component {
     };
 
     this.instance = this.props.mold.child(this.props.moldPath);
-    this.storage = this.instance.mold;
+    this.storage = this.instance.realMold;
   }
 
   componentWillMount() {
   }
 
   _renderPages(pages, actionName) {
-    return <div>{
-      _.map(pages, (page, index) => {
-        return this.props.renderItemWrapper(`page${index}`,
-          this._renderCollection(page, actionName, index))})
-    }</div>
+    return _.map(pages, (page, index) => {
+      return <ItemWrapper name={`page${index}`}>
+        {this._renderCollection(page, actionName, index)}
+      </ItemWrapper>;
+    });
   }
 
   _renderCollection(collection, actionName, pageNum) {
     return _.map(collection, (item, index) => {
-      const moldPath = `${this.props.moldPath}[${item.mold.$id}]`;
-      return this.props.renderItemWrapper(index, <StructDocument moldPath={convertFromSchemaToLodash(moldPath)}
-                                                                 mold={this.props.mold} />)
+      const moldPath = `${this.props.moldPath}[${item.$id}]`;
+      const storagePath = `action.${actionName}[${pageNum}][${index}]`;
+      return <ItemWrapper name={index}>
+        <StructDocument moldPath={moldPath}
+                        mold={this.props.mold}
+                        storage={_.get(this.storage, storagePath)} />
+      </ItemWrapper>;
     });
   }
 

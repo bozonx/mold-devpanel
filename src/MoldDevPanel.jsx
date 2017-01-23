@@ -13,6 +13,16 @@ export default class MoldDevPanel extends React.Component {
   constructor(params) {
     super(params);
 
+    // TODO: use real
+    //this.mold = window.appMold;
+
+    const schema = require('./_testSchema').schema;
+    const storage = require('./_testSchema').storage;
+    this.mold = require('../libs/mold').default({}, schema);
+    this.mold.$setWholeStorageState(storage);
+
+
+
     const savedState = localStorage.getItem('mold-devpanel__open') == 'true';
 
     this.state = {
@@ -45,7 +55,7 @@ export default class MoldDevPanel extends React.Component {
               <TabButton>Store</TabButton>
 
               <TabContent>
-                <MoldStructure />
+                <MoldStructure mold={this.mold} />
               </TabContent>
               <TabContent>
                 <div>Schema</div>

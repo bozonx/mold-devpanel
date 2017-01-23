@@ -3,7 +3,6 @@ import _ from 'lodash';
 
 import StructDocument from './StructDocument';
 
-import testSchema from './_testSchema';
 import { convertFromSchemaToLodash } from './helpers';
 
 
@@ -15,8 +14,8 @@ export default class MoldStructure extends React.Component {
 
     // TODO: use real
     //this.mold = window.appMold;
-    //this.mold.$$schemaManager.getFullSchema()
-    //this.mold.$getWholeStorageState()
+    //this.schema = this.mold.$$schemaManager.getFullSchema()
+    //this.storage = this.mold.$getWholeStorageState()
 
     this.schema = testSchema.schema;
     this.storage = testSchema.storage;

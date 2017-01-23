@@ -1,3 +1,5 @@
+
+
 ////////// sturcture
 #mold-devpanel__structure {
   overflow-x: auto;
@@ -8,20 +10,25 @@
 }
 
 //////////////// Document
-.mold-devpanel__document ul {
-  list-style: none;
+.mold-devpanel__document {
   background: #f9f9e1;
   border: 1px solid #d8d87c;
-  font-size: 120%;
-  line-height: 120%;
   margin: 0 0 2px;
   padding: 1px 3px;
+  font-size: $value-font-size;
+  line-height: $value-line-height;
+}
+.mold-devpanel__document ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: $value-font-size;
+  line-height: $value-line-height;
   li {
     padding: 0;
     margin: 0;
   }
 }
-
 .mold-devpanel__document_value-wrapper {
   display: flex;
 }

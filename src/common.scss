@@ -1,3 +1,4 @@
+$level-margin: 7px;
 $structure-font-size: 11px;
 $structure-line-height: 12px;
 $value-font-size: 13px;
@@ -21,7 +22,7 @@ $no-data-color: #887026;
 
 ////////////// Item wrapper
 .mold-devpanel__container-children {
-  padding-left: 7px;
+  padding-left: $level-margin;
   border-left: 1px solid #ccc;
 
 }

@@ -24,11 +24,24 @@ export default class Document extends React.Component {
   // TODO: ???? поддержка большой вложенности
   // TODO: помечать элементы из схемы, левые, ro и несохраняемые
 
-  renderRecursive(data, name) {
-    if (_.isPlainObject(data)) {
+  renderRecursive(data, name, level) {
+    level = level || 0;
+    if (_.isPlainObject(data) && level > 0) {
       return <ul>
-        {_.map(data, (item, name) => <li key={name}>
-          {this.renderRecursive(item, name)}
+        {_.map(data, (item, itemName) => <li key={itemName}>
+          <div>
+            <div className="mold-devpanel__document_label">{name}: </div>
+            <div className="mold-devpanel__document_next-level">
+              {this.renderRecursive(item, itemName, level + 1)}
+            </div>
+          </div>
+        </li>)}
+      </ul>;
+    }
+    else if (_.isPlainObject(data)) {
+      return <ul>
+        {_.map(data, (item, itemName) => <li key={itemName}>
+          {this.renderRecursive(item, itemName, level + 1)}
         </li>)}
       </ul>;
     }

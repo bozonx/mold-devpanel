@@ -38,7 +38,7 @@ const storage = {
     array: [1,2,3],
     unnown: 'value',
     nestedContainer: {
-      param: 'value',
+      nestedParam: 'value',
     },
   },
   document: {

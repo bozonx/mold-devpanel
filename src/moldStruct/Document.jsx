@@ -17,13 +17,13 @@ export default class Document extends React.Component {
     this.storage = (this.props.storage) ? this.props.storage : this.instance.mold;
   }
 
-  // TODO: сортировка параметров по имени
   // TODO: помечать элементы из схемы, левые, ro и несохраняемые
 
   sort(allNames) {
     let filteredNames = [];
 
     filteredNames = _.difference(allNames, this.props.excludeFields);
+    filteredNames.sort();
 
     return filteredNames;
   }

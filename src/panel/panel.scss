@@ -1,0 +1,71 @@
+
+#mold-devpanel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  background: white;
+  border-left: 1px solid #ccc;
+  box-shadow: 0px 0px 30px rgba(0,0,0, 0.5);
+  z-index: 99999;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#mold-devpanel-inner {
+  padding: 10px 0 10px 10px;
+}
+
+#mold-devpanel-openner {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 30px;
+  width: 30px;
+  margin: 0 5px 20px 0;
+  padding: 5px 0 0 3px;
+  z-index: 99999;
+  background: #eaeaea;
+  opacity: 0.5;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  .mold-devpanel-switcher {
+    border: 0 none;
+  }
+}
+#mold-devpanel-openner:hover {
+  opacity: 1;
+}
+
+.mold-devpanel--hide {
+  display: none;
+}
+
+#mold-devpanel-header {
+  display: flex;
+  margin-bottom: 12px;
+}
+#mold-devpanel-closer {
+  cursor: pointer;
+}
+#mold-devpanel-header-h1 {
+  flex-grow: 1;
+  margin-left: 10px;
+  h1 {
+    font-size: 14px;
+    margin: 0;
+  }
+}
+
+.mold-devpanel-switcher {
+  padding: 0 5px 3px;
+  font-size: 29px;
+  line-height: 13px;
+  font-weight: bold;
+  border: 1px solid transparent;
+
+  &:hover {
+    border-color: #ccc;
+  }
+}

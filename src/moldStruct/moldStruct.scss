@@ -6,16 +6,6 @@
   line-height: $structure-line-height;
   box-sizing: border-box;
 }
-.mold-devpanel__container-children {
-  padding-left: 10px;
-  border-left: 1px solid #ccc;
-}
-.mold-devpanel__container-name {
-  padding: 2px 0 2px;
-}
-
-
-
 
 //////////////// Document
 .mold-devpanel__document {
@@ -26,15 +16,14 @@
     & > li {
       font-size: 120%;
       line-height: 120%;
-      padding: 3px;
       background: #f9f9e1;
       display: flex;
-      padding: 0;
+      padding: 1px 3px;
       & > .mold-devpanel__document_label {
         margin-right: 5px;
+        color: #999;
       }
       & > .mold-devpanel__document_value {
-        font-weight: bold;
       }
     }
   }

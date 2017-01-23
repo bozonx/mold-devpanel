@@ -1,2 +1,27 @@
 $structure-font-size: 11px;
 $structure-line-height: 12px;
+$number-color: #325cad;
+$boolean-color: #9e5721;
+$string-color: #333;
+$path-color: #444;
+
+
+.mold-devpanel__type-number {
+  color: $number-color,
+}
+.mold-devpanel__type-boolean {
+  color: $boolean-color;
+}
+.mold-devpanel__type-string {
+  color: $string-color;
+}
+
+////////////// Item wrapper
+.mold-devpanel__container-children {
+  padding-left: 7px;
+  border-left: 1px solid #ccc;
+}
+.mold-devpanel__container-name {
+  padding: 2px 0 2px;
+  color: $path-color;
+}

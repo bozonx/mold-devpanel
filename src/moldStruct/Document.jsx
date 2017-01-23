@@ -42,6 +42,23 @@ export default class Document extends React.Component {
   // TODO: ???? поддержка большой вложенности
   // TODO: помечать элементы из схемы, левые, ro и несохраняемые
 
+  _renderValue(value) {
+    if (_.isBoolean(value)) {
+      return <span className="mold-devpanel__type-boolean">{value}</span>;
+    }
+    else if (_.isNumber(value)) {
+      return <span className="mold-devpanel__type-number">{value}</span>;
+    }
+    else if (_.isString(value)) {
+      return <span className="mold-devpanel__type-string">"
+        {_.truncate(value, {length: 25})}
+      "</span>;
+    }
+    else {
+      return value;
+    }
+  }
+
   render() {
     return (
       <div className="mold-devpanel__document">
@@ -49,7 +66,7 @@ export default class Document extends React.Component {
           {_.map(this.state.names, (name) => <li key={name}>
             <div className="mold-devpanel__document_label">{name}: </div>
             <div className="mold-devpanel__document_value">
-              {_.truncate(this.storage[name], {length: 25})}
+              {this._renderValue(this.storage[name])}
             </div>
           </li>)}
         </ul>

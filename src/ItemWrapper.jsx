@@ -10,6 +10,10 @@ export default class ItemWrapper extends React.Component {
     children: PropTypes.object,
   };
 
+  // static defaultProps = {
+  //   folded: false,
+  // };
+
   constructor(props) {
     super(props);
   }
@@ -18,12 +22,13 @@ export default class ItemWrapper extends React.Component {
     return <div className="mold-devpanel__container">
       <div className="mold-devpanel__container-name">
         {this.props.name}
-        {(this.props.folded) ?
-          <SwitcherIcon icon="arrow-left" />
-          :
-          <SwitcherIcon icon="arrow-down" />
-        }
-
+        <button>
+          {(this.props.folded) ?
+            <SwitcherIcon icon="arrow-left" />
+            :
+            <SwitcherIcon icon="arrow-down" />
+          }
+        </button>
       </div>
       <div className="mold-devpanel__container-children">
         {this.props.children}

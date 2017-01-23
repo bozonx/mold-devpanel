@@ -18,16 +18,21 @@ const schema = {
       stringParam: {type: 'string'},
     },
   },
-  documentsCollection: {
-    type: 'documentsCollection',
-    item: {
-      type: 'document',
-      schema: {
-        $id: {type: 'number'},
-        name: {type: 'string'},
-      },
+  containerRoot: {
+    type: 'container',
+    schema: {
+      documentsCollection: {
+        type: 'documentsCollection',
+        item: {
+          type: 'document',
+          schema: {
+            $id: {type: 'number'},
+            name: {type: 'string'},
+          },
+        },
+      }
     },
-  }
+  },
 };
 
 
@@ -44,22 +49,24 @@ const storage = {
   document: {
     stringParam: 'value',
   },
-  documentsCollection: {
-    action: {
-      load: [
-        [
-          {
-            $id: 0,
-            name: 'item0',
-          },
-          {
-            $id: 1,
-            name: 'item1',
-          },
-        ],
-      ]
-    },
-  }
+  containerRoot: {
+    documentsCollection: {
+      action: {
+        load: [
+          [
+            {
+              $id: 0,
+              name: 'item0',
+            },
+            {
+              $id: 1,
+              name: 'item1',
+            },
+          ],
+        ]
+      },
+    }
+  },
 };
 
 export default { schema, storage};

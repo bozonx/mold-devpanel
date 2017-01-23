@@ -97,15 +97,18 @@ export default class Document extends React.Component {
     return (
       <div className="mold-devpanel__document">
         {_.isEmpty(this.storage) ?
-          <div className="mold-devpanel__document_value-wrapper mold-devpanel__document_no-data">No data.</div>
+          <div className="mold-devpanel__document_value-wrapper mold-devpanel__document_no-data">
+            No data.</div>
         :
-          this.renderRecursive(this.storage)
+          <div>
+            {this.renderRecursive(this.storage)}
+            <a href=""
+               className="mold-devpanel__document_odd-swither"
+               onClick={::this.handleShowAllClick}>
+              {(this.state.showOdd) ? 'Show all' : 'Hide odd'}
+            </a>
+          </div>
         }
-        <a href=""
-           className="mold-devpanel__document_odd-swither"
-           onClick={::this.handleShowAllClick}>
-          {(this.state.showOdd) ? 'Show all' : 'Hide odd'}
-        </a>
       </div>
     );
   }

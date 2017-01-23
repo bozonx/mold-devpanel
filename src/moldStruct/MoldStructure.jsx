@@ -65,22 +65,25 @@ export default class MoldStructure extends React.Component {
       }
     });
 
+    const nextLevelNames = _.keys(nextLevel).sort();
+
     return <ItemWrapper name={name}>
       {!_.isEmpty(otherFields) &&
         <StructDocument moldPath={convertFromSchemaToLodash(root)}
                         mold={this.props.mold}
                         excludeFields={_.keys(nextLevel)} />
       }
-      {_.map(nextLevel, (item, itemName) => {
+      {_.map(nextLevelNames, (itemName) => {
         return this.recursiveSchema(schema.schema[itemName], `${root}.schema.${itemName}`, itemName);
       })}
     </ItemWrapper>;
   }
 
   _proceedPlainObject(schema, root) {
-    return _.map(schema, (item, itemName) => {
+    const names = _.keys(schema).sort();
+    return _.map(names, (itemName) => {
       const newRoot = _.trim(`${root}.${itemName}`, '.');
-      return <div key={itemName}>{this.recursiveSchema(item, newRoot, itemName)}</div>;
+      return <div key={itemName}>{this.recursiveSchema(schema[itemName], newRoot, itemName)}</div>;
     });
   }
 

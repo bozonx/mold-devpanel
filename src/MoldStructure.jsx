@@ -4,6 +4,7 @@ import _ from 'lodash';
 import StructDocument from './StructDocument';
 
 import testSchema from './_testSchema';
+import { convertFromSchemaToLodash } from './helpers';
 
 
 export default class MoldStructure extends React.Component {
@@ -30,6 +31,7 @@ export default class MoldStructure extends React.Component {
   // TODO: правильней будет пройтись по схеме, тогда можно будет определить документы
   // TODO: подсвечивать несколько секунд последние изменившиеся элементы и их родителей, если они свернуты
 
+  // TODO: поддержка простых коллекций, pagedCollection
 
   // recursivelyMap(containerOrArray) {
   //   if (_.isPlainObject(containerOrArray)) {
@@ -73,7 +75,7 @@ export default class MoldStructure extends React.Component {
                                                            fullStorage={this.storage} />);
     }
     else if (schema.type == 'documentsCollection') {
-      return <div>{name} : {root}</div>;
+      return this._renderItemWrapper(name, this._renderDocumentsCollection(schema, root, name));
     }
     // TODO: oteher types
     else {
@@ -89,12 +91,30 @@ export default class MoldStructure extends React.Component {
   }
 
   _renderItemWrapper(name, inner) {
-    return <div className="mold-devpanel__container">
+    return <div key={name} className="mold-devpanel__container">
       <div className="mold-devpanel__container-name">{name}: </div>
       <div className="mold-devpanel__container-children">
         {inner}
       </div>
     </div>;
+  }
+
+  _renderDocumentsCollection(schema, root, name) {
+    const storageRoot = convertFromSchemaToLodash(root);
+    const collectionStorage = _.get(this.storage, storageRoot);
+
+    return _.map(collectionStorage.action, (action, name) => {
+      return this._renderItemWrapper(name, <div>{
+        _.map(action, (page, index) => {
+          return this._renderItemWrapper(`page${index}`, this._renderCollection(page))})
+      }</div>)
+    });
+  }
+
+  _renderCollection(collection) {
+    return _.map(collection, (item, index) => {
+      return this._renderItemWrapper(index, <div>1</div>)
+    });
   }
 
   render() {

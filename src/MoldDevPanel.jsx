@@ -42,12 +42,16 @@ export default class MoldDevPanel extends React.Component {
             <Tab>
               <TabButton>Mold</TabButton>
               <TabButton>Schema</TabButton>
+              <TabButton>Store</TabButton>
 
               <TabContent>
                 <MoldStructure />
               </TabContent>
               <TabContent>
                 <div>Schema</div>
+              </TabContent>
+              <TabContent>
+                <div>Store</div>
               </TabContent>
             </Tab>
           </Panel>

@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
+import { convertFromSchemaToLodash } from './helpers';
+
+
 export default class StructDocument extends React.Component {
   static propTypes = {
     schema: PropTypes.object,
@@ -16,7 +19,7 @@ export default class StructDocument extends React.Component {
       names: [],
     };
 
-    this.storageRoot = this.props.schemaRoot.replace(/\.schema/g, '');
+    this.storageRoot = convertFromSchemaToLodash(this.props.schemaRoot);
     this.storage = _.get(this.props.fullStorage, this.storageRoot);
   }
 
@@ -46,7 +49,7 @@ export default class StructDocument extends React.Component {
     return (
       <div className="mold-devpanel__document">
         <ul>
-          {_.map(this.state.names, (name) => <li>
+          {_.map(this.state.names, (name) => <li key={name}>
             <div className="mold-devpanel__document_label">{name}: </div>
             <div className="mold-devpanel__document_value">
               {this.storage[name]}

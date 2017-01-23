@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 export default class Tab extends React.Component {
   static propTypes = {
-    children: PropTypes.object,
+    children: PropTypes.array,
   };
 
   constructor(params) {

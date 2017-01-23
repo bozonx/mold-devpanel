@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import _ from 'lodash';
 
 import SwitcherIcon from './controls/SwitcherIcon';
 
@@ -21,6 +22,8 @@ export default class ItemWrapper extends React.Component {
     this.state = {
       folded: this.props.folded,
     }
+
+    console.log(11111, this.props.children)
   }
 
   handleFoldClick(event) {
@@ -32,6 +35,7 @@ export default class ItemWrapper extends React.Component {
     return <div className="mold-devpanel__container">
       <div className="mold-devpanel__container-name">
         {this.props.name}
+        {!_.isEmpty(this.props.children) &&
         <button onClick={::this.handleFoldClick}>
           {(this.state.folded) ?
             <SwitcherIcon icon="arrow-left" />
@@ -39,6 +43,7 @@ export default class ItemWrapper extends React.Component {
             <SwitcherIcon icon="arrow-down" />
           }
         </button>
+        }
       </div>
       <div className="mold-devpanel__container-children">
         {!this.state.folded && this.props.children}

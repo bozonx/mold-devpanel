@@ -105,7 +105,7 @@ export default class Document extends React.Component {
             <a href=""
                className="mold-devpanel__document_odd-swither"
                onClick={::this.handleShowAllClick}>
-              {(this.state.showOdd) ? 'Show all' : 'Hide odd'}
+              {(this.state.showOdd) ? 'Hide odd' : 'Show all'}
             </a>
           </div>
         }

@@ -21,9 +21,7 @@ export default class ItemWrapper extends React.Component {
 
     this.state = {
       folded: this.props.folded,
-    }
-
-    console.log(11111, this.props.children)
+    };
   }
 
   handleFoldClick(event) {

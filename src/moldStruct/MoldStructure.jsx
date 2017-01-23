@@ -19,9 +19,9 @@ export default class MoldStructure extends React.Component {
     this.schema = this.props.mold.$$schemaManager.getFullSchema();
     this.storage = this.props.mold.$getWholeStorageState();
 
-    this.props.mold.onAnyChange(() => {
-      this.setState({storage: this.props.mold.$getWholeStorageState()});
-    });
+    // this.props.mold.onAnyChange(() => {
+    //   this.setState({storage: this.props.mold.$getWholeStorageState()});
+    // });
   }
 
   recursiveSchema(schema, root, name) {

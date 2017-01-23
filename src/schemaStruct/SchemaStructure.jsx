@@ -14,7 +14,6 @@ export default class SchemaStructure extends React.Component {
 
     this.schema = this.props.mold.$$schemaManager.getFullSchema();
     this.storage = this.props.mold.$getWholeStorageState();
-
   }
 
   recursiveSchema(schema, root, name) {
@@ -47,7 +46,17 @@ export default class SchemaStructure extends React.Component {
 
     return <ItemWrapper name={name}>
       {_.map(names, (itemName) => {
-        return this.recursiveSchema(schema.schema[itemName], `${root}.schema.${itemName}`, itemName);
+        if (_.includes(['string', 'boolean', 'number'], schema.schema[itemName].type)) {
+          return _.map(schema.schema[itemName], (param, paramName) => <div className="mold-devpanel__document_value-wrapper">
+            <div className="mold-devpanel__document_label">{paramName}: </div>
+            <div className="mold-devpanel__document_next-level">
+              {param}
+            </div>
+          </div>);
+        }
+        else {
+          return this.recursiveSchema(schema.schema[itemName], `${root}.schema.${itemName}`, itemName);
+        }
       })}
     </ItemWrapper>;
   }

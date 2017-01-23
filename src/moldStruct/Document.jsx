@@ -21,26 +21,34 @@ export default class Document extends React.Component {
   // TODO: сортировка параметров по имени
   // TODO: помечать элементы из схемы, левые, ro и несохраняемые
 
+  sort(names) {
+    return names;
+  }
+
   renderRecursive(data, name, level) {
     level = level || 0;
-    if (_.isPlainObject(data) && level > 0) {
-      return <ul>
-        {_.map(data, (item, itemName) => <li key={itemName}>
-          <div>
-            <div className="mold-devpanel__document_label">{name}: </div>
-            <div className="mold-devpanel__document_next-level">
-              {this.renderRecursive(item, itemName, level + 1)}
+    if (_.isPlainObject(data)) {
+      const names = this.sort(_.keys(data));
+
+      if (level > 0) {
+        return <ul>
+          {_.map(names, (itemName) => <li key={itemName}>
+            <div>
+              <div className="mold-devpanel__document_label">{name}: </div>
+              <div className="mold-devpanel__document_next-level">
+                {this.renderRecursive(data[itemName], itemName, level + 1)}
+              </div>
             </div>
-          </div>
-        </li>)}
-      </ul>;
-    }
-    else if (_.isPlainObject(data)) {
-      return <ul>
-        {_.map(data, (item, itemName) => <li key={itemName}>
-          {this.renderRecursive(item, itemName, level + 1)}
-        </li>)}
-      </ul>;
+          </li>)}
+        </ul>;
+      }
+      else {
+        return <ul>
+          {_.map(names, (itemName) => <li key={itemName}>
+            {this.renderRecursive(data[itemName], itemName, level + 1)}
+          </li>)}
+        </ul>;
+      }
     }
     else {
       return <div className="mold-devpanel__document_value-wrapper">

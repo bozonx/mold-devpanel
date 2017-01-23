@@ -34,7 +34,8 @@ export default class MoldStructure extends React.Component {
     if (!_.isPlainObject(schema)) return;
     if (schema.type == 'container') {
       return <ItemWrapper name={name}>
-        {this._proceedPlainObject(schema.schema, _.trim(`${root}.schema`, '.'))}
+        <StructDocument moldPath={convertFromSchemaToLodash(root)}
+                        mold={this.props.mold} />
       </ItemWrapper>;
     }
     else if (schema.type == 'document') {

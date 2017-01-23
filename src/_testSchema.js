@@ -35,6 +35,7 @@ const storage = {
   container: {
     stringParam: 'value',
     numberParam: 5,
+    array: [1,2,3],
     unnown: 'value',
     nestedContainer: {
       param: 'value',

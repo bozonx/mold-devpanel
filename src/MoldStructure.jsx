@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
 import StructDocument from './StructDocument';
+import StructDocumetsCollection from './StructDocumetsCollection';
 
 import { convertFromSchemaToLodash } from './helpers';
 
@@ -39,7 +40,9 @@ export default class MoldStructure extends React.Component {
                                                            mold={this.props.mold} />);
     }
     else if (schema.type == 'documentsCollection') {
-      return this._renderItemWrapper(name, this._renderDocumentsCollection(schema, root, name));
+      return this._renderItemWrapper(name, <StructDocumetsCollection moldPath={convertFromSchemaToLodash(root)}
+                                                                     mold={this.props.mold}
+                                                                     renderItemWrapper={this._renderItemWrapper} />);
     }
     // TODO: other types
     else {
@@ -61,24 +64,6 @@ export default class MoldStructure extends React.Component {
         {inner}
       </div>
     </div>;
-  }
-
-  _renderDocumentsCollection(schema, root, name) {
-    const storageRoot = convertFromSchemaToLodash(root);
-    const collectionStorage = _.get(this.storage, storageRoot);
-
-    return _.map(collectionStorage.action, (action, name) => {
-      return this._renderItemWrapper(name, <div>{
-        _.map(action, (page, index) => {
-          return this._renderItemWrapper(`page${index}`, this._renderCollection(page))})
-      }</div>)
-    });
-  }
-
-  _renderCollection(collection) {
-    return _.map(collection, (item, index) => {
-      return this._renderItemWrapper(index, <div>1</div>)
-    });
   }
 
   render() {

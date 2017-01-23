@@ -23,7 +23,7 @@ const schema = {
     item: {
       type: 'document',
       schema: {
-        id: {type: 'number'},
+        $id: {type: 'number'},
         name: {type: 'string'},
       },
     },
@@ -48,10 +48,14 @@ const storage = {
       load: [
         [
           {
-            id: 0,
+            $id: 0,
+            name: 'item0',
+          },
+          {
+            $id: 1,
             name: 'item1',
-          }
-        ]
+          },
+        ],
       ]
     },
   }

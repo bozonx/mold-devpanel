@@ -33,10 +33,7 @@ export default class MoldStructure extends React.Component {
   recursiveSchema(schema, root, name) {
     if (!_.isPlainObject(schema)) return;
     if (schema.type == 'container') {
-      return <ItemWrapper name={name}>
-        <StructDocument moldPath={convertFromSchemaToLodash(root)}
-                        mold={this.props.mold} />
-      </ItemWrapper>;
+      return this._renderContainer(schema, root, name);
     }
     else if (schema.type == 'document') {
       return <ItemWrapper name={name}>
@@ -54,6 +51,30 @@ export default class MoldStructure extends React.Component {
     else if (!schema.type) {
       return this._proceedPlainObject(schema, root);
     }
+  }
+
+  _renderContainer(schema, root, name) {
+    const otherFields = {};
+    const nextLevel = {};
+    _.each(schema.schema, (item, itemName) => {
+      if (_.includes(['boolean', 'string', 'number'], item.type)) {
+        otherFields[itemName] = item;
+      }
+      else {
+        nextLevel[itemName] = item;
+      }
+    });
+
+    return <ItemWrapper name={name}>
+      {!_.isEmpty(otherFields) &&
+        <StructDocument moldPath={convertFromSchemaToLodash(root)}
+                        mold={this.props.mold}
+                        excludeFields={_.keys(nextLevel)} />
+      }
+      {_.map(nextLevel, (item, itemName) => {
+        return this.recursiveSchema(schema.schema[itemName], `${root}.schema.${itemName}`, itemName);
+      })}
+    </ItemWrapper>;
   }
 
   _proceedPlainObject(schema, root) {

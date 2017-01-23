@@ -7,6 +7,7 @@ export default class Document extends React.Component {
     moldPath: PropTypes.string,
     mold: PropTypes.object,
     storage: PropTypes.object,
+    excludeFields: PropTypes.array,
   };
 
   constructor(props) {
@@ -16,12 +17,8 @@ export default class Document extends React.Component {
     this.storage = (this.props.storage) ? this.props.storage : this.instance.mold;
   }
 
+  // TODO: не рисовать поля в excludeFields
   // TODO: сортировка параметров по имени
-  // TODO: отсортировать примитивы вверх
-  // TODO: отсортировать по алфавиту
-
-  // TODO: поумолчанию прятать примитивы, начинающиеся на _
-  // TODO: ???? поддержка большой вложенности
   // TODO: помечать элементы из схемы, левые, ro и несохраняемые
 
   renderRecursive(data, name, level) {

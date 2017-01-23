@@ -8,6 +8,7 @@ export default class ItemWrapper extends React.Component {
     name: PropTypes.string,
     folded: PropTypes.bool,
     children: PropTypes.object,
+    //onFoldClick: PropTypes.object,
   };
 
   // static defaultProps = {
@@ -16,14 +17,23 @@ export default class ItemWrapper extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      folded: this.props.folded,
+    }
+  }
+
+  handleFoldClick(event) {
+    event.preventDefault();
+    this.setState({folded: !this.state.folded});
   }
 
   render() {
     return <div className="mold-devpanel__container">
       <div className="mold-devpanel__container-name">
         {this.props.name}
-        <button>
-          {(this.props.folded) ?
+        <button onClick={::this.handleFoldClick}>
+          {(this.state.folded) ?
             <SwitcherIcon icon="arrow-left" />
             :
             <SwitcherIcon icon="arrow-down" />
@@ -31,7 +41,7 @@ export default class ItemWrapper extends React.Component {
         </button>
       </div>
       <div className="mold-devpanel__container-children">
-        {this.props.children}
+        {!this.state.folded && this.props.children}
       </div>
     </div>;
   }

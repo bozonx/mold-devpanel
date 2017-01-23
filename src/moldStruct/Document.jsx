@@ -17,12 +17,15 @@ export default class Document extends React.Component {
     this.storage = (this.props.storage) ? this.props.storage : this.instance.mold;
   }
 
-  // TODO: не рисовать поля в excludeFields
   // TODO: сортировка параметров по имени
   // TODO: помечать элементы из схемы, левые, ro и несохраняемые
 
-  sort(names) {
-    return names;
+  sort(allNames) {
+    let filteredNames = [];
+
+    filteredNames = _.difference(allNames, this.props.excludeFields);
+
+    return filteredNames;
   }
 
   renderRecursive(data, name, level) {

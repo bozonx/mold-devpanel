@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
+import ItemWrapper from './ItemWrapper';
 import StructDocument from './StructDocument';
 import StructDocumetsCollection from './StructDocumetsCollection';
 
@@ -32,20 +33,24 @@ export default class MoldStructure extends React.Component {
   recursiveSchema(schema, root, name) {
     if (!_.isPlainObject(schema)) return;
     if (schema.type == 'container') {
-      return this._renderItemWrapper(name,
-        this._proceedPlainObject(schema.schema, _.trim(`${root}.schema`, '.')));
+      return <ItemWrapper name={name}>
+        {this._proceedPlainObject(schema.schema, _.trim(`${root}.schema`, '.'))}
+      </ItemWrapper>;
     }
     else if (schema.type == 'document') {
-      return this._renderItemWrapper(name, <StructDocument moldPath={convertFromSchemaToLodash(root)}
-                                                           mold={this.props.mold} />);
+      return <ItemWrapper name={name}>
+        <StructDocument moldPath={convertFromSchemaToLodash(root)}
+                        mold={this.props.mold} />
+      </ItemWrapper>;
     }
     else if (schema.type == 'documentsCollection') {
-      return this._renderItemWrapper(name, <StructDocumetsCollection moldPath={convertFromSchemaToLodash(root)}
-                                                                     mold={this.props.mold}
-                                                                     renderItemWrapper={this._renderItemWrapper} />);
+      return <ItemWrapper name={name}>
+        <StructDocumetsCollection moldPath={convertFromSchemaToLodash(root)}
+                                  mold={this.props.mold} />
+      </ItemWrapper>;
     }
     // TODO: other types
-    else {
+    else if (!schema.type) {
       return this._proceedPlainObject(schema, root);
     }
   }
@@ -57,19 +62,9 @@ export default class MoldStructure extends React.Component {
     });
   }
 
-  _renderItemWrapper(name, inner) {
-    return <div key={name} className="mold-devpanel__container">
-      <div className="mold-devpanel__container-name">{name}: </div>
-      <div className="mold-devpanel__container-children">
-        {inner}
-      </div>
-    </div>;
-  }
-
   render() {
     return (
       <div id="mold-devpanel__structure">
-        {/*{this.recursivelyMap(this.state.storage)}*/}
         <div>
           {this.recursiveSchema(this.schema, '')}
         </div>

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
+import ItemWrapper from './ItemWrapper';
 import StructDocument from './StructDocument';
 
 
@@ -8,7 +9,6 @@ export default class StructDocumetsCollection extends React.Component {
   static propTypes = {
     moldPath: PropTypes.string,
     mold: PropTypes.object,
-    renderItemWrapper: PropTypes.func,
   };
 
   constructor(props) {
@@ -22,15 +22,6 @@ export default class StructDocumetsCollection extends React.Component {
   }
 
   componentWillMount() {
-  }
-
-  _renderDocumentsCollection(moldPath) {
-    // TODO: use instance
-    const collectionStorage = _.get(this.storage, moldPath);
-
-    return _.map(collectionStorage.action, (action, name) => {
-      return this.props.renderItemWrapper(name, this._renderPages(action, moldPath))
-    });
   }
 
   _renderPages(pages, actionName) {
@@ -49,11 +40,14 @@ export default class StructDocumetsCollection extends React.Component {
     });
   }
 
+
   render() {
     return (
       <div className="mold-devpanel__documents-collection">
         {_.map(this.storage.action, (action, name) => {
-          return this.props.renderItemWrapper(name, this._renderPages(action, name))
+          return <ItemWrapper name={name}>
+            {this._renderPages(action, name)}
+          </ItemWrapper>;
         })}
       </div>
     );

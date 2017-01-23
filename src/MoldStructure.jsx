@@ -7,24 +7,20 @@ import { convertFromSchemaToLodash } from './helpers';
 
 
 export default class MoldStructure extends React.Component {
-  constructor(params) {
-    super(params);
+  static propTypes = {
+    mold: PropTypes.object,
+  };
+
+  constructor(props) {
+    super(props);
 
     if (!window.appMold) throw new Error(`There isn't window.appMold!`);
 
-    // TODO: use real
-    //this.mold = window.appMold;
-    //this.schema = this.mold.$$schemaManager.getFullSchema()
-    //this.storage = this.mold.$getWholeStorageState()
+    this.schema = this.props.mold.$$schemaManager.getFullSchema();
+    this.storage = this.props.mold.$getWholeStorageState();
 
-    this.schema = testSchema.schema;
-    this.storage = testSchema.storage;
-    this.mold = require('../libs/mold').default({}, this.schema);
-    this.mold.$setWholeStorageState(this.storage);
-
-
-    this.mold.onAnyChange(() => {
-      this.setState({storage: this.mold.$getWholeStorageState()});
+    this.props.mold.onAnyChange(() => {
+      this.setState({storage: this.props.mold.$getWholeStorageState()});
     });
 
     // this.state = {
@@ -40,7 +36,7 @@ export default class MoldStructure extends React.Component {
     }
     else if (schema.type == 'document') {
       return this._renderItemWrapper(name, <StructDocument moldPath={convertFromSchemaToLodash(root)}
-                                                           mold={this.mold} />);
+                                                           mold={this.props.mold} />);
     }
     else if (schema.type == 'documentsCollection') {
       return this._renderItemWrapper(name, this._renderDocumentsCollection(schema, root, name));

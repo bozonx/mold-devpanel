@@ -8,8 +8,8 @@ export default class StructDocument extends React.Component {
     mold: PropTypes.object,
   };
 
-  constructor(params) {
-    super(params);
+  constructor(props) {
+    super(props);
 
     this.state = {
       names: [],

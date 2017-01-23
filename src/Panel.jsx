@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 
 export default class Panel extends React.Component {
-  constructor(params) {
-    super(params);
+  constructor(props) {
+    super(props);
 
     this.state = {
       open: false,

@@ -5,8 +5,8 @@ export default class TabContent extends React.Component {
     children: PropTypes.object,
   };
 
-  constructor(params) {
-    super(params);
+  constructor(props) {
+    super(props);
   }
 
   render() {

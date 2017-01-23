@@ -6,8 +6,8 @@ export default class Tab extends React.Component {
     children: PropTypes.array,
   };
 
-  constructor(params) {
-    super(params);
+  constructor(props) {
+    super(props);
 
     this.buttons = [];
     this.contents = [];

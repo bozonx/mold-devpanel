@@ -5,8 +5,8 @@ export default class TabButton extends React.Component {
     children: PropTypes.string,
   };
 
-  constructor(params) {
-    super(params);
+  constructor(props) {
+    super(props);
   }
 
   render() {

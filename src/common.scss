@@ -24,7 +24,6 @@ $no-data-color: #887026;
 .mold-devpanel__container-children {
   padding-left: $level-margin;
   border-left: 1px solid #ccc;
-
 }
 .mold-devpanel__container-name {
   padding: 2px 0 2px;
@@ -45,9 +44,13 @@ $no-data-color: #887026;
     margin: 0;
     padding: 0;
     font-size: 11px;
-    line-height: 3px;
+    line-height: 1px;
+    font-weight: bold;
     color: #555;
     height: 12px;
     border: 0 none;
+    .mold-devpanel__switcher_arrow-right {
+      font-size: 18px;
+    }
   }
 }

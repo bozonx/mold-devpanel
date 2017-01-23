@@ -38,7 +38,7 @@ export default class ItemWrapper extends React.Component {
         {!_.isEmpty(this.props.children) &&
         <button onClick={::this.handleFoldClick}>
           {(this.state.folded) ?
-            <SwitcherIcon icon="arrow-left" />
+            <SwitcherIcon icon="arrow-right" />
             :
             <SwitcherIcon icon="arrow-down" />
           }

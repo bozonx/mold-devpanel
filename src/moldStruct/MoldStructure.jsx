@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
-import ItemWrapper from './ItemWrapper';
+import ItemWrapper from '../ItemWrapper';
 import StructDocument from './StructDocument';
 import StructDocumetsCollection from './StructDocumetsCollection';
 
-import { convertFromSchemaToLodash } from './helpers';
+import { convertFromSchemaToLodash } from '../helpers';
 
 
 export default class MoldStructure extends React.Component {

@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
-import ItemWrapper from './ItemWrapper';
+import ItemWrapper from '../ItemWrapper';
 import StructDocument from './StructDocument';
 
 
-export default class StructDocumetsCollection extends React.Component {
+export default class DocumetsCollection extends React.Component {
   static propTypes = {
     moldPath: PropTypes.string,
     mold: PropTypes.object,

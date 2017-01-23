@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
 
-export default class StructDocument extends React.Component {
+export default class Document extends React.Component {
   static propTypes = {
     moldPath: PropTypes.string,
     mold: PropTypes.object,

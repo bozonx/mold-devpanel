@@ -3,11 +3,11 @@ import localStorage from 'localStorage';
 
 import './main.scss';
 import Panel from './Panel';
-import MoldStructure from './MoldStructure';
-import SwitcherIcon from './SwitcherIcon';
-import Tab from './Tab';
-import TabButton from './TabButton';
-import TabContent from './TabContent';
+import MoldStructure from './moldStruct/MoldStructure';
+import SwitcherIcon from './controls/SwitcherIcon';
+import Tab from './controls/Tab';
+import TabButton from './controls/TabButton';
+import TabContent from './controls/TabContent';
 
 export default class MoldDevPanel extends React.Component {
   constructor(props) {

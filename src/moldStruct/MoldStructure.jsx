@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
 import ItemWrapper from '../ItemWrapper';
-import StructDocument from './Document';
-import StructDocumetsCollection from './DocumetsCollection';
+import Document from './Document';
+import DocumetsCollection from './DocumetsCollection';
 
 import { convertFromSchemaToLodash } from '../helpers';
 
@@ -16,18 +16,12 @@ export default class MoldStructure extends React.Component {
   constructor(props) {
     super(props);
 
-    if (!window.appMold) throw new Error(`There isn't window.appMold!`);
-
     this.schema = this.props.mold.$$schemaManager.getFullSchema();
     this.storage = this.props.mold.$getWholeStorageState();
 
     this.props.mold.onAnyChange(() => {
       this.setState({storage: this.props.mold.$getWholeStorageState()});
     });
-
-    // this.state = {
-    //   storage: this.mold.$getWholeStorageState(),
-    // }
   }
 
   recursiveSchema(schema, root, name) {
@@ -37,13 +31,13 @@ export default class MoldStructure extends React.Component {
     }
     else if (schema.type == 'document') {
       return <ItemWrapper name={name}>
-        <StructDocument moldPath={convertFromSchemaToLodash(root)}
+        <Document moldPath={convertFromSchemaToLodash(root)}
                         mold={this.props.mold} />
       </ItemWrapper>;
     }
     else if (schema.type == 'documentsCollection') {
       return <ItemWrapper name={name}>
-        <StructDocumetsCollection moldPath={convertFromSchemaToLodash(root)}
+        <DocumetsCollection moldPath={convertFromSchemaToLodash(root)}
                                   mold={this.props.mold} />
       </ItemWrapper>;
     }
@@ -69,7 +63,7 @@ export default class MoldStructure extends React.Component {
 
     return <ItemWrapper name={name}>
       {!_.isEmpty(otherFields) &&
-        <StructDocument moldPath={convertFromSchemaToLodash(root)}
+        <Document moldPath={convertFromSchemaToLodash(root)}
                         mold={this.props.mold}
                         excludeFields={_.keys(nextLevel)} />
       }

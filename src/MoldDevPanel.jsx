@@ -4,14 +4,20 @@ import localStorage from 'localStorage';
 import './main.scss';
 import Panel from './Panel';
 import MoldStructure from './moldStruct/MoldStructure';
+import SchemaStructure from './schemaStruct/SchemaStructure';
+import StoreStructure from './storeStruct/StoreStructure';
 import SwitcherIcon from './controls/SwitcherIcon';
 import Tab from './controls/Tab';
 import TabButton from './controls/TabButton';
 import TabContent from './controls/TabContent';
 
+
 export default class MoldDevPanel extends React.Component {
   constructor(props) {
     super(props);
+
+    if (!window.appMold) throw new Error(`There isn't window.appMold!`);
+
 
     // TODO: use real
     this.mold = window.appMold;
@@ -56,10 +62,10 @@ export default class MoldDevPanel extends React.Component {
                 <MoldStructure mold={this.mold} />
               </TabContent>
               <TabContent>
-                <div>Schema</div>
+                <SchemaStructure mold={this.mold} />
               </TabContent>
               <TabContent>
-                <div>Store</div>
+                <StoreStructure mold={this.mold} />
               </TabContent>
             </Tab>
           </Panel>

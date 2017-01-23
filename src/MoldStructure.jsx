@@ -28,40 +28,6 @@ export default class MoldStructure extends React.Component {
     // }
   }
 
-  // TODO: правильней будет пройтись по схеме, тогда можно будет определить документы
-  // TODO: подсвечивать несколько секунд последние изменившиеся элементы и их родителей, если они свернуты
-
-  // TODO: поддержка простых коллекций, pagedCollection
-
-  // recursivelyMap(containerOrArray) {
-  //   if (_.isPlainObject(containerOrArray)) {
-  //     return _.map(containerOrArray, (item, name) => {
-  //       if (_.isPlainObject(item) || _.isArray(item)) {
-  //         return <div className="mold-devpanel__container" key={name}>
-  //           <div className="mold-devpanel__container-name">{name}: </div>
-  //           <div className="mold-devpanel__container-children">{this.recursivelyMap(item)}</div>
-  //         </div>
-  //       }
-  //       else {
-  //         return this.renderPrimitive(name, item);
-  //       }
-  //
-  //     });
-  //   }
-  //   else if (_.isArray(containerOrArray)) {
-  //     return _.map(containerOrArray, (item, index) => {
-  //       return <div key={index}>
-  //         <div className="mold-devpanel__container-name">{index}: </div>
-  //         <div>{this.recursivelyMap(item)}</div>
-  //       </div>
-  //     });
-  //   }
-  // }
-
-  renderPrimitive(name, value) {
-    return <div key={name} className="mold-devpanel__primitive">{name}: {value}</div>;
-  }
-
   recursiveSchema(schema, root, name) {
     if (!_.isPlainObject(schema)) return;
     if (schema.type == 'container') {
@@ -77,7 +43,7 @@ export default class MoldStructure extends React.Component {
     else if (schema.type == 'documentsCollection') {
       return this._renderItemWrapper(name, this._renderDocumentsCollection(schema, root, name));
     }
-    // TODO: oteher types
+    // TODO: other types
     else {
       return this._proceedPlainObject(schema, root);
     }

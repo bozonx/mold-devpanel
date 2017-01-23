@@ -46,11 +46,12 @@ export default class DocumetsCollection extends React.Component {
 
 
   render() {
+    const actionNames = _.keys(this.storage.action).sort();
     return (
       <div className="mold-devpanel__documents-collection">
-        {_.map(this.storage.action, (action, name) => {
+        {_.map(actionNames, (name) => {
           return <ItemWrapper name={name}>
-            {this._renderPages(action, name)}
+            {this._renderPages(this.storage.action[name], name)}
           </ItemWrapper>;
         })}
       </div>

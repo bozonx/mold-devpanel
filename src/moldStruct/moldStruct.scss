@@ -8,23 +8,25 @@
 }
 
 //////////////// Document
-.mold-devpanel__document {
-  & > ul {
-    border: 1px solid #d8d87c;
-    list-style: none;
-    margin: 0 0 2px;
-    & > li {
-      font-size: 120%;
-      line-height: 120%;
-      background: #f9f9e1;
-      display: flex;
-      padding: 1px 3px;
-      & > .mold-devpanel__document_label {
-        margin-right: 5px;
-        color: #999;
-      }
-      & > .mold-devpanel__document_value {
-      }
-    }
-  }
+.mold-devpanel__document ul, .mold-devpanel__document li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mold-devpanel__document_value-wrapper {
+  margin: 0 0 2px;
+  border: 1px solid #d8d87c;
+  font-size: 120%;
+  line-height: 120%;
+  background: #f9f9e1;
+  padding: 1px 3px;
+  display: flex;
+}
+.mold-devpanel__document_label {
+  margin-right: 5px;
+  color: #999;
+}
+.mold-devpanel__document_no-data {
+  color: $no-data-color;
 }

@@ -13,16 +13,23 @@ export default class Document extends React.Component {
   constructor(props) {
     super(props);
 
+    this.oddFields = ['$index', '$pageIndex', '$parent', '$url', '_id', '_rev'];
+
     this.instance = this.props.mold.child(this.props.moldPath);
     this.storage = (this.props.storage) ? this.props.storage : this.instance.mold;
+
+    this.state = {
+      showOdd: false,
+    }
   }
 
-  // TODO: помечать элементы из схемы, левые, ro и несохраняемые
-
   sort(allNames) {
-    let filteredNames = [];
+    let filteredNames = _.difference(allNames, this.props.excludeFields);
 
-    filteredNames = _.difference(allNames, this.props.excludeFields);
+    if (!this.state.showOdd) {
+      filteredNames = _.difference(allNames, this.oddFields);
+    }
+
     filteredNames.sort();
 
     return filteredNames;
@@ -80,6 +87,11 @@ export default class Document extends React.Component {
     }
   }
 
+  handleShowAllClick(event) {
+    event.preventDefault();
+    this.setState({showOdd: !this.state.showOdd});
+  }
+
 
   render() {
     return (
@@ -89,6 +101,11 @@ export default class Document extends React.Component {
         :
           this.renderRecursive(this.storage)
         }
+        <a href=""
+           className="mold-devpanel__document_odd-swither"
+           onClick={::this.handleShowAllClick}>
+          {(this.state.showOdd) ? 'Show all' : 'Hide odd'}
+        </a>
       </div>
     );
   }

@@ -8,19 +8,21 @@
 }
 
 //////////////// Document
-.mold-devpanel__document ul, .mold-devpanel__document li {
+.mold-devpanel__document ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.mold-devpanel__document_value-wrapper {
-  margin: 0 0 2px;
+  background: #f9f9e1;
   border: 1px solid #d8d87c;
   font-size: 120%;
   line-height: 120%;
-  background: #f9f9e1;
+  margin: 0 0 2px;
   padding: 1px 3px;
+  li {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.mold-devpanel__document_value-wrapper {
   display: flex;
 }
 .mold-devpanel__document_label {

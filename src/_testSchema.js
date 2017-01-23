@@ -41,7 +41,7 @@ const storage = {
     },
   },
   document: {
-    //stringParam: 'value',
+    stringParam: 'value',
   },
   documentsCollection: {
     action: {

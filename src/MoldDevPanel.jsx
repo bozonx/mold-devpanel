@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import localStorage from 'localStorage';
 
-import './main.scss';
 import Panel from './Panel';
 import MoldStructure from './moldStruct/MoldStructure';
 import SchemaStructure from './schemaStruct/SchemaStructure';
@@ -10,6 +9,8 @@ import SwitcherIcon from './controls/SwitcherIcon';
 import Tab from './controls/Tab';
 import TabButton from './controls/TabButton';
 import TabContent from './controls/TabContent';
+
+require('./main.scss');
 
 
 export default class MoldDevPanel extends React.Component {
@@ -42,6 +43,7 @@ export default class MoldDevPanel extends React.Component {
   render() {
     return (
       <div>
+
         <div className={!this.state.open && 'mold-devpanel--hide'}>
           <Panel>
             <div id="mold-devpanel-header">
@@ -59,13 +61,19 @@ export default class MoldDevPanel extends React.Component {
               <TabButton>Store</TabButton>
 
               <TabContent>
-                <MoldStructure mold={this.mold} />
+                <div>
+                  <MoldStructure mold={this.mold} />
+                </div>
               </TabContent>
               <TabContent>
-                <SchemaStructure mold={this.mold} />
+                <div>
+                  <SchemaStructure mold={this.mold} />
+                </div>
               </TabContent>
               <TabContent>
-                <StoreStructure mold={this.mold} />
+                <div>
+                  <StoreStructure mold={this.mold} />
+                </div>
               </TabContent>
             </Tab>
           </Panel>

@@ -83,7 +83,7 @@ export default class MoldStructure extends React.Component {
 
   render() {
     return (
-      <div id="mold-devpanel__structure">
+      <div className="mold-devpanel__structure">
         <div>
           {this.recursiveSchema(this.schema, '')}
         </div>

@@ -11,10 +11,8 @@ export default class StoreStructure extends React.Component {
   }
 
   render() {
-    return (
-      <div id="mold-devpanel__structure">
-        1111
-      </div>
-    );
+    return <div className="mold-devpanel__structure">
+      1111
+    </div>;
   }
 }

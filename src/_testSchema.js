@@ -26,8 +26,9 @@ const schema = {
         item: {
           type: 'document',
           schema: {
-            $id: {type: 'number'},
+            $id: {type: 'number', saveable: false},
             name: {type: 'string'},
+            ro: {type: 'string', readOnly: true},
           },
         },
       }

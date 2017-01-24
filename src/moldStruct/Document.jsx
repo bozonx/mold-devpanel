@@ -23,41 +23,53 @@ export default class Document extends React.Component {
     }
   }
 
-  sort(allNames) {
-    let filteredNames = _.difference(allNames, this.props.excludeFields);
-
+  exclude(allNames) {
+    let toExclude = (this.props.excludeFields) ? _.clone(this.props.excludeFields) : [];
     if (!this.state.showOdd) {
-      filteredNames = _.difference(allNames, this.oddFields);
+      toExclude = toExclude.concat(this.oddFields);
     }
 
-    filteredNames.sort();
+    return _.difference(allNames, toExclude);
+  }
 
-    return filteredNames;
+  _isAnyHidden(allNames) {
+    return !_.isEmpty(_.intersection(allNames, this.oddFields));
   }
 
   renderRecursive(data, name, level) {
     level = level || 0;
     if (_.isPlainObject(data)) {
-      const names = this.sort(_.keys(data));
+      const names = this.exclude(_.keys(data));
+      names.sort();
 
       if (level > 0) {
-        return <ul>
-          {_.map(names, (itemName) => <li key={itemName}>
-            <div>
-              <div className="mold-devpanel__document_label">{name}: </div>
-              <div className="mold-devpanel__document_next-level">
-                {this.renderRecursive(data[itemName], itemName, level + 1)}
+        return <div>
+            <ul>
+            {_.map(names, (itemName) => <li key={itemName}>
+              <div>
+                <div className="mold-devpanel__document_label">{name}: </div>
+                <div className="mold-devpanel__document_next-level">
+                  {this.renderRecursive(data[itemName], itemName, level + 1)}
+                </div>
               </div>
-            </div>
-          </li>)}
-        </ul>;
+            </li>)}
+          </ul>
+        </div>;
       }
       else {
-        return <ul>
-          {_.map(names, (itemName) => <li key={itemName}>
-            {this.renderRecursive(data[itemName], itemName, level + 1)}
-          </li>)}
-        </ul>;
+        return <div>
+          <ul>
+            {_.map(names, (itemName) => <li key={itemName}>
+              {this.renderRecursive(data[itemName], itemName, level + 1)}
+            </li>)}
+          </ul>
+          {this._isAnyHidden(_.keys(data)) &&
+            <a href="" className="mold-devpanel__document_odd-swither"
+               onClick={::this.handleShowAllClick}>
+              {(this.state.showOdd) ? 'Hide odd' : 'Show all'}
+            </a>
+          }
+        </div>;
       }
     }
     else {
@@ -102,11 +114,6 @@ export default class Document extends React.Component {
         :
           <div>
             {this.renderRecursive(this.storage)}
-            <a href=""
-               className="mold-devpanel__document_odd-swither"
-               onClick={::this.handleShowAllClick}>
-              {(this.state.showOdd) ? 'Hide odd' : 'Show all'}
-            </a>
           </div>
         }
       </div>

@@ -20,7 +20,7 @@ export default class Tab extends React.Component {
     });
 
     this.state = {
-      current: 1,
+      current: 0,
     };
   }
 

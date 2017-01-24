@@ -19,8 +19,6 @@ export default class DocumetsCollection extends React.Component {
 
     this.instance = this.props.mold.child(this.props.moldPath);
     this.storage = this.instance.mold;
-
-    console.log(11111, this.storage, this.instance)
   }
 
   componentWillMount() {

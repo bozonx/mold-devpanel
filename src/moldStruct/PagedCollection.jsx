@@ -35,11 +35,10 @@ export default class DocumetsCollection extends React.Component {
   _renderCollection(collection, pageNum) {
     return _.map(collection, (item, index) => {
       const moldPath = `${this.props.moldPath}[${item.$id}]`;
-      const storagePath = `[${pageNum}][${index}]`;
       return <ItemWrapper name={index}>
-        <StructDocument moldPath={moldPath}
+        {/*<StructDocument moldPath={moldPath}
                         mold={this.props.mold}
-                        storage={_.get(this.storage, storagePath)} />
+                        storage={this.storage[pageNum][index]} />*/}
       </ItemWrapper>;
     });
   }

@@ -10,7 +10,7 @@ import Tab from './controls/Tab';
 import TabButton from './controls/TabButton';
 import TabContent from './controls/TabContent';
 
-require('./main.scss');
+//require('./main.scss');
 
 
 export default class MoldDevPanel extends React.Component {

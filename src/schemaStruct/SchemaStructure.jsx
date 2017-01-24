@@ -18,13 +18,12 @@ export default class SchemaStructure extends React.Component {
 
   recursiveSchema(schema, root, name) {
     if (!_.isPlainObject(schema)) return;
-    if (schema.type == 'container' || schema.type == 'document') {
+    if (_.includes(['container', 'document'], schema.type)) {
       return this._renderContainer(schema, root, name);
     }
-    else if (schema.type == 'documentsCollection') {
+    else if (_.includes(['documentsCollection', 'pagedCollection', 'collection'], schema.type)) {
       return this._renderDocumentsCollection(schema, root, name);
     }
-    // TODO: other types
     else if (!schema.type) {
       return this._proceedPlainObject(schema, root);
     }

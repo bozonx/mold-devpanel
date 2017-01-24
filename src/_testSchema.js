@@ -38,7 +38,7 @@ const schema = {
         item: {
           type: 'container',
           schema: {
-            $id: {type: 'number', primary: false},
+            $id: {type: 'number', primary: true},
             name: {type: 'string'},
           },
         },
@@ -48,7 +48,7 @@ const schema = {
         item: {
           type: 'container',
           schema: {
-            $id: {type: 'number', primary: false},
+            $id: {type: 'number', primary: true},
             name: {type: 'string'},
           },
         },

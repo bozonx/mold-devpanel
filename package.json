@@ -1,6 +1,6 @@
 {
   "name": "mold-devpanel",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Developer panel for mold",
   "repository": {
     "type": "git",
@@ -29,7 +29,7 @@
     "jquery": "^3.1.1",
     "localStorage": "^1.0.3",
     "lodash": "^4.17.2",
-    "node-sass": "^3.13.0",
+    "node-sass": "^4.3.0",
     "postcss-loader": "^1.1.1",
     "react": "^15.3.2",
     "react-dom": "^15.4.1",

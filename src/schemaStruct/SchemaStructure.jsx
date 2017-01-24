@@ -48,7 +48,7 @@ export default class SchemaStructure extends React.Component {
       {_.map(names, (itemName) => {
         if (_.includes(['string', 'boolean', 'number'], schema.schema[itemName].type)) {
           return <div className="mold-devpanel__schema-primitive">
-            <div className="mold-devpanel__schema-primitive_name">{itemName}</div>
+            <div className="mold-devpanel__schema-primitive_name">{itemName}:</div>
             <div>
               <div className="mold-devpanel__schema-primitive_type">
                 {schema.schema[itemName].type}
@@ -57,14 +57,6 @@ export default class SchemaStructure extends React.Component {
               {schema.schema[itemName].saveable && <div className="mold-devpanel__schema-primitive_saveable">saveable</div>}
             </div>
           </div>;
-{/*          return <ItemWrapper name={itemName}>
-            {_.map(schema.schema[itemName], (param, paramName) => <div className="mold-devpanel__document_value-wrapper">
-              <div className="mold-devpanel__document_label">{paramName}: </div>
-              <div>
-                {param}
-              </div>
-            </div>)}
-          </ItemWrapper>;*/}
         }
         else {
           return this.recursiveSchema(schema.schema[itemName], `${root}.schema.${itemName}`, itemName);

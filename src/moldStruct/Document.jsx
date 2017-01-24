@@ -84,7 +84,7 @@ export default class Document extends React.Component {
 
   _renderValue(value) {
     if (_.isBoolean(value)) {
-      return <span className="mold-devpanel__type-boolean">{value}</span>;
+      return <span className="mold-devpanel__type-boolean">{JSON.stringify(value)}</span>;
     }
     else if (_.isNumber(value)) {
       return <span className="mold-devpanel__type-number">{value}</span>;

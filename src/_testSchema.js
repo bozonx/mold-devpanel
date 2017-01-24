@@ -4,6 +4,7 @@ const schema = {
     schema: {
       stringParam: {type: 'string'},
       numberParam: {type: 'number'},
+      booleanParam: {type: 'boolean'},
       nestedContainer: {
         type: 'container',
         schema: {
@@ -41,6 +42,7 @@ const storage = {
   container: {
     stringParam: 'value',
     numberParam: 5,
+    booleanParam: true,
     array: [1,2,3],
     unnown: 'value',
     nestedContainer: {

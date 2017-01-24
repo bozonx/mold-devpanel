@@ -27,9 +27,29 @@ const schema = {
         item: {
           type: 'document',
           schema: {
-            $id: {type: 'number', saveable: false},
-            name: {type: 'string'},
+            $id: {type: 'number', saveable: false, primary: true},
+            name: {type: 'string', saveable: true},
             ro: {type: 'string', readOnly: true},
+          },
+        },
+      },
+      pagedCollection: {
+        type: 'pagedCollection',
+        item: {
+          type: 'container',
+          schema: {
+            $id: {type: 'number', primary: false},
+            name: {type: 'string'},
+          },
+        },
+      },
+      collection: {
+        type: 'collection',
+        item: {
+          type: 'container',
+          schema: {
+            $id: {type: 'number', primary: false},
+            name: {type: 'string'},
           },
         },
       }
@@ -60,15 +80,39 @@ const storage = {
             {
               $id: 0,
               name: 'item0',
+              ro: 'read only',
             },
             {
               $id: 1,
               name: 'item1',
+              ro: 'read only',
             },
           ],
         ]
       },
-    }
+    },
+    pagedCollection: [
+      [
+        {
+          $id: 0,
+          name: 'item0',
+        },
+        {
+          $id: 0,
+          name: 'item0',
+        },
+      ]
+    ],
+    collection: [
+      {
+        $id: 0,
+        name: 'item0',
+      },
+      {
+        $id: 0,
+        name: 'item0',
+      },
+    ],
   },
 };
 

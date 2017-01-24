@@ -7,7 +7,8 @@
 }
 
 .mold-devpanel__schema-primitive_type, .mold-devpanel__schema-primitive_ro,
-.mold-devpanel__schema-primitive_saveable, .mold-devpanel__schema-primitive_unsaveable {
+.mold-devpanel__schema-primitive_saveable, .mold-devpanel__schema-primitive_unsaveable,
+.mold-devpanel__schema-primitive_primary  {
   margin-right: 2px;
   display: inline-block;
   padding: 1px 4px;
@@ -20,8 +21,11 @@
   background: $primitive-ro-color;
 }
 .mold-devpanel__schema-primitive_saveable {
-  background: $primitive-ro-saveable;
+  background: $primitive-saveable;
 }
 .mold-devpanel__schema-primitive_unsaveable {
-  background: $primitive-ro-saveable;
+  background: $primitive-unsaveable;
+}
+.mold-devpanel__schema-primitive_primary {
+  background: $primitive-primary;
 }

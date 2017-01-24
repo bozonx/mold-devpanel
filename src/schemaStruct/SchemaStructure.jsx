@@ -63,6 +63,7 @@ export default class SchemaStructure extends React.Component {
                 :
                 <div className="mold-devpanel__schema-primitive_unsaveable">unsaveable</div>
               )}
+              {schema.schema[itemName].primary && <div className="mold-devpanel__schema-primitive_primary">primary</div>}
             </div>
           </div>;
         }

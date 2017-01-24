@@ -20,13 +20,13 @@ export default class MoldDevPanel extends React.Component {
     if (!window.appMold) throw new Error(`There isn't window.appMold!`);
 
 
-    // TODO: use real
-    //this.mold = window.appMold;
     // test data
-    const schema = require('./_testSchema').default.schema;
-    const moldStorage = require('./_testSchema').default.storage;
-    this.mold = require('../libs/mold').default({}, schema);
-    this.mold.$setWholeStorageState(moldStorage);
+    // const schema = require('./_testSchema').default.schema;
+    // const moldStorage = require('./_testSchema').default.storage;
+    // this.mold = require('../libs/mold').default({}, schema);
+    // this.mold.$setWholeStorageState(moldStorage);
+    // TODO: use real
+    this.mold = window.appMold;
 
     const savedState = storage.get('open');
 

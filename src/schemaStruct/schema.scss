@@ -6,7 +6,8 @@
   color: $path-color;
 }
 
-.mold-devpanel__schema-primitive_type, .mold-devpanel__schema-primitive_ro, .mold-devpanel__schema-primitive_saveable {
+.mold-devpanel__schema-primitive_type, .mold-devpanel__schema-primitive_ro,
+.mold-devpanel__schema-primitive_saveable, .mold-devpanel__schema-primitive_unsaveable {
   margin-right: 2px;
   display: inline-block;
   padding: 1px 4px;
@@ -19,5 +20,8 @@
   background: $primitive-ro-color;
 }
 .mold-devpanel__schema-primitive_saveable {
-  background: red;
+  background: $primitive-ro-saveable;
+}
+.mold-devpanel__schema-primitive_unsaveable {
+  background: $primitive-ro-saveable;
 }

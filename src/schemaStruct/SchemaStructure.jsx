@@ -57,7 +57,12 @@ export default class SchemaStructure extends React.Component {
                 {schema.schema[itemName].type}
               </div>
               {schema.schema[itemName].readOnly && <div className="mold-devpanel__schema-primitive_ro">ro</div>}
-              {schema.schema[itemName].saveable && <div className="mold-devpanel__schema-primitive_saveable">saveable</div>}
+              {!_.isUndefined(schema.schema[itemName].saveable) &&
+                (schema.schema[itemName].saveable) ?
+                  <div className="mold-devpanel__schema-primitive_saveable">saveable</div>
+                :
+                <div className="mold-devpanel__schema-primitive_unsaveable">unsaveable</div>
+              }
             </div>
           </div>;
         }

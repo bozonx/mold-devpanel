@@ -30,6 +30,8 @@ export default class MoldStructure extends React.Component {
   }
 
   recursiveSchema(schema, root, name) {
+    // TODO: сделать универсальный способ подключения, чтобы можно было расширять
+
     if (!_.isPlainObject(schema)) return;
     if (schema.type == 'container') {
       return this._renderContainer(schema, root, name);
@@ -46,7 +48,18 @@ export default class MoldStructure extends React.Component {
                              mold={this.props.mold} />
       </ItemWrapper>;
     }
-    // TODO: other types
+    else if (schema.type == 'pagedCollection') {
+      return <ItemWrapper name={name}>
+        <PagedCollection moldPath={convertFromSchemaToLodash(root)}
+                         mold={this.props.mold} />
+      </ItemWrapper>;
+    }
+    else if (schema.type == 'collection') {
+      return <ItemWrapper name={name}>
+        <Collection moldPath={convertFromSchemaToLodash(root)}
+                    mold={this.props.mold} />
+      </ItemWrapper>;
+    }
     else if (!schema.type) {
       return this._proceedPlainObject(schema, root);
     }

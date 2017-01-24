@@ -18,24 +18,24 @@ export default class DocumetsCollection extends React.Component {
     };
 
     this.instance = this.props.mold.child(this.props.moldPath);
-    this.storage = this.instance.realMold;
+    this.storage = this.instance.mold;
   }
 
   componentWillMount() {
   }
 
-  _renderPages(pages, actionName) {
+  _renderPages(pages) {
     return _.map(pages, (page, index) => {
       return <ItemWrapper name={`page${index}`}>
-        {this._renderCollection(page, actionName, index)}
+        {this._renderCollection(page, index)}
       </ItemWrapper>;
     });
   }
 
-  _renderCollection(collection, actionName, pageNum) {
+  _renderCollection(collection, pageNum) {
     return _.map(collection, (item, index) => {
       const moldPath = `${this.props.moldPath}[${item.$id}]`;
-      const storagePath = `action.${actionName}[${pageNum}][${index}]`;
+      const storagePath = `[${pageNum}][${index}]`;
       return <ItemWrapper name={index}>
         <StructDocument moldPath={moldPath}
                         mold={this.props.mold}
@@ -46,14 +46,9 @@ export default class DocumetsCollection extends React.Component {
 
 
   render() {
-    const actionNames = _.keys(this.storage.action).sort();
     return (
-      <div className="mold-devpanel__documents-collection">
-        {_.map(actionNames, (name) => {
-          return <ItemWrapper name={name}>
-            {this._renderPages(this.storage.action[name], name)}
-          </ItemWrapper>;
-        })}
+      <div>
+        {this._renderPages(this.storage)}
       </div>
     );
   }

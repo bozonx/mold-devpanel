@@ -48,7 +48,7 @@ export default class DocumentsCollection extends React.Component {
   render() {
     const actionNames = _.keys(this.storage.action).sort();
     return (
-      <div className="mold-devpanel__documents-collection">
+      <div>
         {_.map(actionNames, (name) => {
           return <ItemWrapper name={name}>
             {this._renderPages(this.storage.action[name], name)}

@@ -28,7 +28,7 @@ export default class MoldDevPanel extends React.Component {
     this.mold = require('../libs/mold').default({}, schema);
     this.mold.$setWholeStorageState(moldStorage);
 
-    const savedState = storage.get('open') == 'true';
+    const savedState = storage.get('open');
 
     this.state = {
       open: savedState,

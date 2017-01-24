@@ -6,7 +6,7 @@ class Storage {
   }
 
   get(param) {
-    return localStorage.getItem(this._prefix + param);
+    return JSON.parse(localStorage.getItem(this._prefix + param));
   }
 
   set(param, data) {

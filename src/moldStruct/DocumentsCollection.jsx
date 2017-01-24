@@ -60,9 +60,7 @@ export default class DocumentsCollection extends React.Component {
     return (
       <div>
         {_.map(actionNames, (name) => this._renderPages(this.storage.action[name], name))}
-        <ItemWrapper name="documents">
-          {_.map(documentsNames, (name) => this._renderDocuments(name))}
-        </ItemWrapper>
+        {_.map(documentsNames, (name) => this._renderDocuments(name))}
       </div>
     );
   }

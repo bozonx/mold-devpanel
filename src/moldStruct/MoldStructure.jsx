@@ -3,7 +3,9 @@ import _ from 'lodash';
 
 import ItemWrapper from '../ItemWrapper';
 import Document from './Document';
-import DocumetsCollection from './DocumetsCollection';
+import DocumentsCollection from './DocumentsCollection';
+import PagedCollection from './PagedCollection';
+import Collection from './Collection';
 
 import { convertFromSchemaToLodash } from '../helpers';
 
@@ -40,8 +42,8 @@ export default class MoldStructure extends React.Component {
     }
     else if (schema.type == 'documentsCollection') {
       return <ItemWrapper name={name}>
-        <DocumetsCollection moldPath={convertFromSchemaToLodash(root)}
-                                  mold={this.props.mold} />
+        <DocumentsCollection moldPath={convertFromSchemaToLodash(root)}
+                             mold={this.props.mold} />
       </ItemWrapper>;
     }
     // TODO: other types

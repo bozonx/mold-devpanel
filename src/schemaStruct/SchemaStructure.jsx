@@ -74,12 +74,8 @@ export default class SchemaStructure extends React.Component {
   }
 
   render() {
-    return (
-      <div className="mold-devpanel__structure">
-        <div>
-          {this.recursiveSchema(this.schema, '')}
-        </div>
-      </div>
-    );
+    return <div className="mold-devpanel__structure">
+      {this.recursiveSchema(this.schema, '')}
+    </div>;
   }
 }

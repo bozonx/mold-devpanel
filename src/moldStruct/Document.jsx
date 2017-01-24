@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
+import { renderValue } from '../helpers';
+
 
 export default class Document extends React.Component {
   static propTypes = {
@@ -76,26 +78,9 @@ export default class Document extends React.Component {
       return <div className="mold-devpanel__document_value-wrapper">
         <div className="mold-devpanel__document_label">{name}: </div>
         <div>
-          {this._renderValue(data)}
+          {renderValue(data)}
         </div>
       </div>;
-    }
-  }
-
-  _renderValue(value) {
-    if (_.isBoolean(value)) {
-      return <span className="mold-devpanel__type-boolean">{JSON.stringify(value)}</span>;
-    }
-    else if (_.isNumber(value)) {
-      return <span className="mold-devpanel__type-number">{value}</span>;
-    }
-    else if (_.isString(value)) {
-      return <span className="mold-devpanel__type-string">"
-        {_.truncate(value, {length: 25})}
-        "</span>;
-    }
-    else {
-      return JSON.stringify(value);
     }
   }
 

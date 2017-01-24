@@ -14,7 +14,14 @@ export default class StoreStructure extends React.Component {
     super(props);
 
     this.schema = this.props.mold.$$schemaManager.getFullSchema();
-    this.storage = this.props.mold.$getWholeStorageState();
+
+    this.state = {
+      storage: this.props.mold.$getWholeStorageState(),
+    };
+
+    this.props.mold.onAnyChange(() => {
+      this.setState({storage: this.props.mold.$getWholeStorageState()});
+    });
   }
 
   recursiveSchema(storage, name) {
@@ -69,7 +76,7 @@ export default class StoreStructure extends React.Component {
 
   render() {
     return <div className="mold-devpanel__structure">
-      {this.recursiveSchema(this.storage)}
+      {this.recursiveSchema(this.state.storage)}
     </div>;
   }
 }

@@ -1,0 +1,25 @@
+.mold-devpanel__schema-primitive {
+  display: flex;
+  font-size: $value-font-size;
+  line-height: $value-line-height;
+}
+.mold-devpanel__schema-primitive_name {
+  margin-right: 5px;
+  color: $path-color;
+}
+
+.mold-devpanel__schema-primitive_type, .mold-devpanel__schema-primitive_ro, .mold-devpanel__schema-primitive_saveable {
+  margin-right: 2px;
+  display: inline-block;
+  padding: 1px 4px;
+}
+
+.mold-devpanel__schema-primitive_type {
+  background: $primitive-type-color;
+}
+.mold-devpanel__schema-primitive_ro {
+  background: $primitive-ro-color;
+}
+.mold-devpanel__schema-primitive_saveable {
+  background: red;
+}

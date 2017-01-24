@@ -15,7 +15,7 @@ export default class Document extends React.Component {
   constructor(props) {
     super(props);
 
-    this.oddFields = ['$id', '$index', '$pageIndex', '$parent', '$url', '_id', '_rev'];
+    this.oddFields = ['$id', '$index', '$pageIndex', '$parent', '$url', '$loading', '_id', '_rev'];
 
     this.instance = this.props.mold.child(this.props.moldPath);
     this.storage = (this.props.storage) ? this.props.storage : this.instance.mold;

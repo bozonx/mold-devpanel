@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
+import storage from '../storage';
+
 export default class Tab extends React.Component {
   static propTypes = {
     children: PropTypes.array,
@@ -20,12 +22,13 @@ export default class Tab extends React.Component {
     });
 
     this.state = {
-      current: 1,
+      current: storage.get('currentTab') || 0,
     };
   }
 
   handleButtonClick(current) {
     this.setState({current});
+    storage.set('currentTab', current);
   }
 
   render() {

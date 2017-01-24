@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import localStorage from 'localStorage';
 
+import storage from './storage';
 import Panel from './Panel';
 import MoldStructure from './moldStruct/MoldStructure';
 import SchemaStructure from './schemaStruct/SchemaStructure';
@@ -24,11 +24,11 @@ export default class MoldDevPanel extends React.Component {
     //this.mold = window.appMold;
     // test data
     const schema = require('./_testSchema').default.schema;
-    const storage = require('./_testSchema').default.storage;
+    const moldStorage = require('./_testSchema').default.storage;
     this.mold = require('../libs/mold').default({}, schema);
-    this.mold.$setWholeStorageState(storage);
+    this.mold.$setWholeStorageState(moldStorage);
 
-    const savedState = localStorage.getItem('mold-devpanel__open') == 'true';
+    const savedState = storage.get('open') == 'true';
 
     this.state = {
       open: savedState,
@@ -37,7 +37,7 @@ export default class MoldDevPanel extends React.Component {
 
   toggleOpen(newState) {
     this.setState({open: newState});
-    localStorage.setItem('mold-devpanel__open', newState);
+    storage.set('open', newState);
   }
 
   render() {

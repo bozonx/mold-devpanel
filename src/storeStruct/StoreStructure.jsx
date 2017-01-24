@@ -17,28 +17,59 @@ export default class StoreStructure extends React.Component {
     this.storage = this.props.mold.$getWholeStorageState();
   }
 
-  recursiveSchema(storage, root, name) {
+  recursiveSchema(storage, name) {
     if (_.isArray(storage)) {
-
+      return this._renderArray(storage, name);
     }
     else if (_.isPlainObject(storage)) {
-      return _.map(storage, (item, itemName) => <ItemWrapper name={itemName}>
-        {this.recursiveSchema(item, _.trim(`${root}.${itemName}`, '.'), itemName)}
-      </ItemWrapper>)
+      return this._renderContainer(storage, name);
     }
     else {
-      return <div className="mold-devpanel__schema-primitive">
-        <div className="mold-devpanel__schema-primitive_name">{name}:</div>
-        <div>
-          {renderValue(storage)}
-        </div>
-      </div>
+      return this._renderPrimitive(storage, name);
     }
+  }
+
+  _renderPrimitive(storage, name) {
+    return <div className="mold-devpanel__schema-primitive">
+      <div className="mold-devpanel__schema-primitive_name">{name}:</div>
+      <div>
+        {renderValue(storage)}
+      </div>
+    </div>
+  }
+
+  _renderArray(storage, name) {
+    const isPlainArray = !_.isPlainObject(_.last(storage)) && !_.isArray(_.last(storage));
+    if (_.isEmpty(storage) || isPlainArray) {
+      // plain array
+      return this._renderPrimitive(storage, name);
+    }
+
+    // collections
+    return <ItemWrapper name={name}>
+      {_.map(storage, (item, index) =>
+        this.recursiveSchema(item, index.toString()))}
+    </ItemWrapper>;
+  }
+
+  _renderContainer(storage, name) {
+    const renderChildren = () => {
+      return _.map(storage, (item, itemName) =>
+        this.recursiveSchema(item, itemName));
+    };
+
+    if (name) {
+      return <ItemWrapper name={name}>
+        {renderChildren()}
+      </ItemWrapper>;
+    }
+
+    return renderChildren();
   }
 
   render() {
     return <div className="mold-devpanel__structure">
-      {this.recursiveSchema(this.storage, '')}
+      {this.recursiveSchema(this.storage)}
     </div>;
   }
 }

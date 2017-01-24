@@ -30,7 +30,9 @@ export default class SchemaStructure extends React.Component {
   }
 
   _proceedPlainObject(schema, root) {
-    const names = _.keys(schema).sort();
+    //const names = _.keys(schema).sort();
+    const names = _.keys(schema);
+
     return _.map(names, (itemName) => {
       const newRoot = _.trim(`${root}.${itemName}`, '.');
       return <div key={itemName}>{this.recursiveSchema(schema[itemName], newRoot, itemName)}</div>;
@@ -44,7 +46,8 @@ export default class SchemaStructure extends React.Component {
   }
 
   _renderContainer(schema, root, name) {
-    const names = _.keys(schema.schema).sort();
+    //const names = _.keys(schema.schema).sort();
+    const names = _.keys(schema.schema);
 
     return <ItemWrapper name={name}>
       {_.map(names, (itemName) => {

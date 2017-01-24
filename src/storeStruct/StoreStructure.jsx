@@ -60,6 +60,10 @@ export default class StoreStructure extends React.Component {
   }
 
   _renderContainer(storage, name) {
+    if (_.isEmpty(storage)) {
+      return this._renderPrimitive(storage, name);
+    }
+
     const renderChildren = () => {
       return _.map(storage, (item, itemName) =>
         this.recursiveSchema(item, itemName));

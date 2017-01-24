@@ -30,6 +30,9 @@ $primitive-primary: #ffcaf2;
   padding-left: $level-margin;
   border-left: 1px solid #ccc;
 }
+.mold-devpanel__container-children--hovered {
+  border-left-color: #888;
+}
 .mold-devpanel__container-name {
   padding: 2px 0 2px;
   color: $path-color;

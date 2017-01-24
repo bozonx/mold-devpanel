@@ -22,10 +22,7 @@ export default class SchemaStructure extends React.Component {
       return this._renderContainer(schema, root, name);
     }
     else if (schema.type == 'documentsCollection') {
-      return <ItemWrapper name={name}>
-        {/*<DocumetsCollection moldPath={convertFromSchemaToLodash(root)}
-                            mold={this.props.mold} />*/}
-      </ItemWrapper>;
+      return this._renderDocumentsCollection(schema, root, name);
     }
     // TODO: other types
     else if (!schema.type) {
@@ -39,6 +36,12 @@ export default class SchemaStructure extends React.Component {
       const newRoot = _.trim(`${root}.${itemName}`, '.');
       return <div key={itemName}>{this.recursiveSchema(schema[itemName], newRoot, itemName)}</div>;
     });
+  }
+
+  _renderDocumentsCollection(schema, root, name) {
+    return <ItemWrapper name={name} hint={schema.type}>
+      {this.recursiveSchema(schema.item, `${root}.item`, 'item')}
+    </ItemWrapper>;
   }
 
   _renderContainer(schema, root, name) {

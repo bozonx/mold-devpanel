@@ -7,6 +7,7 @@ import SwitcherIcon from './controls/SwitcherIcon';
 export default class ItemWrapper extends React.Component {
   static propTypes = {
     name: PropTypes.string,
+    hint: PropTypes.string,
     folded: PropTypes.bool,
     children: PropTypes.object,
     //onFoldClick: PropTypes.object,
@@ -32,7 +33,7 @@ export default class ItemWrapper extends React.Component {
   render() {
     return <div className="mold-devpanel__container">
       <div className="mold-devpanel__container-name">
-        {this.props.name}
+        <span>{this.props.name}</span>
         {!_.isEmpty(this.props.children) &&
         <button onClick={::this.handleFoldClick}>
           {(this.state.folded) ?
@@ -42,6 +43,7 @@ export default class ItemWrapper extends React.Component {
           }
         </button>
         }
+        {this.props.hint && <span className="mold-devpanel__container-hint">{this.props.hint}</span>}
       </div>
       <div className="mold-devpanel__container-children">
         {!this.state.folded && this.props.children}

@@ -15,14 +15,15 @@ export default class MoldDevPanel extends React.Component {
   constructor(props) {
     super(props);
 
-    if (!window.appMold) throw new Error(`There isn't window.appMold!`);
+    if (!window.appMold) return;
+      //throw new Error(`There isn't window.appMold!`);
 
-    // test data
+    //// test data
     // const schema = require('./_testSchema').default.schema;
     // const moldStorage = require('./_testSchema').default.storage;
     // this.mold = require('../libs/mold').default({}, schema);
     // this.mold.$setWholeStorageState(moldStorage);
-    // real mold
+    //// real mold
     this.mold = window.appMold;
 
     const savedState = storage.get('open');
@@ -38,6 +39,8 @@ export default class MoldDevPanel extends React.Component {
   }
 
   render() {
+    if (!this.mold) return <div></div>;
+
     return (
       <div>
 

@@ -11,7 +11,7 @@ export default class ItemWrapper extends React.Component {
     name: PropTypes.string,
     hint: PropTypes.string,
     folded: PropTypes.bool,
-    children: PropTypes.object,
+    children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     //onFoldClick: PropTypes.object,
   };
 

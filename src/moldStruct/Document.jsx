@@ -95,17 +95,15 @@ export default class Document extends React.Component {
 
 
   render() {
-    return (
-      <div className="mold-devpanel__document">
-        {_.isEmpty(this.storage) ?
-          <div className="mold-devpanel__document_value-wrapper mold-devpanel__document_no-data">
-            No data.</div>
+    return <div className="mold-devpanel__document">
+      {_.isEmpty(this.storage) ?
+        <div className="mold-devpanel__document_value-wrapper mold-devpanel__document_no-data">
+          No data.</div>
         :
-          <div>
-            {this.renderRecursive(this.storage)}
-          </div>
-        }
-      </div>
-    );
+        <div>
+          {this.renderRecursive(this.storage)}
+        </div>
+      }
+    </div>;
   }
 }

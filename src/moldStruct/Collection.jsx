@@ -15,9 +15,6 @@ export default class DocumetsCollection extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-    };
-
     this.instance = this.props.mold.child(this.props.moldPath);
     this.storage = this.instance.mold;
   }
@@ -28,7 +25,7 @@ export default class DocumetsCollection extends React.Component {
   _renderCollection(collection) {
     return _.map(collection, (item, index) => {
       const moldPath = `${this.props.moldPath}[${item.$id}]`;
-      return <ItemWrapper name={index} key={index}>
+      return <ItemWrapper key={index} name={index}>
         <StructDocument moldPath={moldPath}
                         mold={this.props.mold}
                         storage={item} />
@@ -37,10 +34,8 @@ export default class DocumetsCollection extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        {this._renderCollection(this.storage)}
-      </div>
-    );
+    return <div>
+      {this._renderCollection(this.storage)}
+    </div>;
   }
 }

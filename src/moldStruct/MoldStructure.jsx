@@ -24,7 +24,9 @@ export default class MoldStructure extends React.Component {
     this.state = {
       storage: this.props.mold.$getWholeStorageState(),
     };
+  }
 
+  componentWillMount() {
     this.props.mold.onAnyChange(() => {
       this.setState({storage: this.props.mold.$getWholeStorageState()});
     });

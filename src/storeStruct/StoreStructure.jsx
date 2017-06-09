@@ -19,7 +19,9 @@ export default class StoreStructure extends React.Component {
     this.state = {
       storage: this.props.mold.$getWholeStorageState(),
     };
+  }
 
+  componentWillMount() {
     this.props.mold.onAnyChange(() => {
       this.setState({storage: this.props.mold.$getWholeStorageState()});
     });
@@ -38,7 +40,7 @@ export default class StoreStructure extends React.Component {
   }
 
   _renderPrimitive(storage, name) {
-    return <div className="mold-devpanel__schema-primitive">
+    return <div key={name} className="mold-devpanel__schema-primitive">
       <div className="mold-devpanel__schema-primitive_name">{name}:</div>
       <div>
         {renderValue(storage)}
@@ -54,7 +56,7 @@ export default class StoreStructure extends React.Component {
     }
 
     // collections
-    return <ItemWrapper name={name}>
+    return <ItemWrapper key={name} name={name}>
       {_.map(storage, (item, index) =>
         this.recursiveSchema(item, index.toString()))}
     </ItemWrapper>;
@@ -71,7 +73,7 @@ export default class StoreStructure extends React.Component {
     };
 
     if (name) {
-      return <ItemWrapper name={name}>
+      return <ItemWrapper key={name} name={name}>
         {renderChildren()}
       </ItemWrapper>;
     }

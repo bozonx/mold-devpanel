@@ -36,12 +36,12 @@ export default class SchemaStructure extends React.Component {
 
     return _.map(names, (itemName) => {
       const newRoot = _.trim(`${root}.${itemName}`, '.');
-      return <div key={itemName}>{this.recursiveSchema(schema[itemName], newRoot, itemName)}</div>;
+      return <div key={newRoot}>{this.recursiveSchema(schema[itemName], newRoot, itemName)}</div>;
     });
   }
 
   _renderDocumentsCollection(schema, root, name) {
-    return <ItemWrapper name={name} hint={schema.type}>
+    return <ItemWrapper key={`${root}.${name}`} name={name} hint={schema.type}>
       {this.recursiveSchema(schema.item, `${root}.item`, 'item')}
     </ItemWrapper>;
   }
@@ -50,7 +50,7 @@ export default class SchemaStructure extends React.Component {
     //const names = _.keys(schema.schema).sort();
     const names = _.keys(schema.schema);
 
-    return <ItemWrapper name={name}>
+    return <ItemWrapper key={`${root}.${name}`} name={name}>
       {_.map(names, (itemName, index) => {
         if (_.includes(['string', 'boolean', 'number'], schema.schema[itemName].type)) {
           return <div key={index} className="mold-devpanel__schema-primitive">

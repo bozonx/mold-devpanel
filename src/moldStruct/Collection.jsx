@@ -28,7 +28,7 @@ export default class DocumetsCollection extends React.Component {
   _renderCollection(collection) {
     return _.map(collection, (item, index) => {
       const moldPath = `${this.props.moldPath}[${item.$id}]`;
-      return <ItemWrapper name={index}>
+      return <ItemWrapper name={index} key={index}>
         <StructDocument moldPath={moldPath}
                         mold={this.props.mold}
                         storage={item} />

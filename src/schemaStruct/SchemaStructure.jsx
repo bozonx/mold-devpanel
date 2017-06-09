@@ -51,9 +51,9 @@ export default class SchemaStructure extends React.Component {
     const names = _.keys(schema.schema);
 
     return <ItemWrapper name={name}>
-      {_.map(names, (itemName) => {
+      {_.map(names, (itemName, index) => {
         if (_.includes(['string', 'boolean', 'number'], schema.schema[itemName].type)) {
-          return <div className="mold-devpanel__schema-primitive">
+          return <div key={index} className="mold-devpanel__schema-primitive">
             <div className="mold-devpanel__schema-primitive_name">{itemName}:</div>
             <div>
               <div className="mold-devpanel__schema-primitive_type">

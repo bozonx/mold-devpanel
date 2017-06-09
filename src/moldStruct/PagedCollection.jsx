@@ -27,7 +27,7 @@ export default class DocumetsCollection extends React.Component {
 
   _renderPages(pages) {
     return _.map(pages, (page, index) => {
-      return <ItemWrapper name={`page${index}`}>
+      return <ItemWrapper key={index} name={`page${index}`}>
         {this._renderCollection(page, index)}
       </ItemWrapper>;
     });
@@ -36,7 +36,7 @@ export default class DocumetsCollection extends React.Component {
   _renderCollection(collection, pageNum) {
     return _.map(collection, (item, index) => {
       const moldPath = `${this.props.moldPath}[${item.$id}]`;
-      return <ItemWrapper name={index}>
+      return <ItemWrapper key={index} name={index}>
         {/*<StructDocument moldPath={moldPath}
                         mold={this.props.mold}
                         storage={this.storage[pageNum][index]} />*/}

@@ -38,25 +38,25 @@ export default class MoldStructure extends React.Component {
       return this._renderContainer(schema, root, name);
     }
     else if (schema.type == 'document') {
-      return <ItemWrapper name={name}>
+      return <ItemWrapper key={`${root}.${name}`} name={name}>
         <Document moldPath={convertFromSchemaToLodash(root)}
                         mold={this.props.mold} />
       </ItemWrapper>;
     }
     else if (schema.type == 'documentsCollection') {
-      return <ItemWrapper name={name}>
+      return <ItemWrapper key={`${root}.${name}`} name={name}>
         <DocumentsCollection moldPath={convertFromSchemaToLodash(root)}
                              mold={this.props.mold} />
       </ItemWrapper>;
     }
     else if (schema.type == 'pagedCollection') {
-      return <ItemWrapper name={name}>
+      return <ItemWrapper key={`${root}.${name}`} name={name}>
         <PagedCollection moldPath={convertFromSchemaToLodash(root)}
                          mold={this.props.mold} />
       </ItemWrapper>;
     }
     else if (schema.type == 'collection') {
-      return <ItemWrapper name={name}>
+      return <ItemWrapper key={`${root}.${name}`} name={name}>
         <Collection moldPath={convertFromSchemaToLodash(root)}
                     mold={this.props.mold} />
       </ItemWrapper>;
@@ -80,7 +80,7 @@ export default class MoldStructure extends React.Component {
 
     const nextLevelNames = _.keys(nextLevel).sort();
 
-    return <ItemWrapper name={name}>
+    return <ItemWrapper key={`${root}.${name}`} name={name}>
       {!_.isEmpty(otherFields) &&
         <Document moldPath={convertFromSchemaToLodash(root)}
                         mold={this.props.mold}

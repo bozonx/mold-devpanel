@@ -14,12 +14,11 @@ export default class DocumetsCollection extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.instance = this.props.mold.child(this.props.moldPath);
-    this.storage = this.instance.mold;
   }
 
   componentWillMount() {
+    this.instance = this.props.mold.child(this.props.moldPath);
+    this.storage = this.instance.mold;
   }
 
   _renderCollection(collection) {

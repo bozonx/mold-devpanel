@@ -21,12 +21,16 @@ export default class Document extends React.Component {
       '$loading', '$saving', '_id', '_rev'
     ];
 
-    this.instance = this.props.mold.child(this.props.moldPath);
-    this.storage = (this.props.storage) ? this.props.storage : this.instance.mold;
 
     this.state = {
       showOdd: false,
     }
+  }
+
+  componentWillMount() {
+    this.instance = this.props.mold.child(this.props.moldPath);
+    this.storage = (this.props.storage) ? this.props.storage : this.instance.mold;
+
   }
 
   exclude(allNames) {
@@ -42,7 +46,7 @@ export default class Document extends React.Component {
     return !_.isEmpty(_.intersection(allNames, this.oddFields));
   }
 
-  renderRecursive(data, name, level) {
+  _renderRecursive(data, name, level) {
     level = level || 0;
     if (_.isPlainObject(data)) {
       const names = this.exclude(_.keys(data));
@@ -55,7 +59,7 @@ export default class Document extends React.Component {
               <div>
                 <div className="mold-devpanel__document_label">{name}: </div>
                 <div className="mold-devpanel__document_next-level">
-                  {this.renderRecursive(data[itemName], itemName, level + 1)}
+                  {this._renderRecursive(data[itemName], itemName, level + 1)}
                 </div>
               </div>
             </li>)}
@@ -66,7 +70,7 @@ export default class Document extends React.Component {
         return <div>
           <ul>
             {_.map(names, (itemName) => <li key={itemName}>
-              {this.renderRecursive(data[itemName], itemName, level + 1)}
+              {this._renderRecursive(data[itemName], itemName, level + 1)}
             </li>)}
           </ul>
           {this._isAnyHidden(_.keys(data)) &&
@@ -101,7 +105,7 @@ export default class Document extends React.Component {
           No data.</div>
         :
         <div>
-          {this.renderRecursive(this.storage)}
+          {this._renderRecursive(this.storage)}
         </div>
       }
     </div>;

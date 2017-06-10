@@ -17,12 +17,11 @@ export default class DocumetsCollection extends React.Component {
 
     this.state = {
     };
-
-    this.instance = this.props.mold.child(this.props.moldPath);
-    this.storage = this.instance.mold;
   }
 
   componentWillMount() {
+    this.instance = this.props.mold.child(this.props.moldPath);
+    this.storage = this.instance.mold;
   }
 
   _renderPages(pages) {

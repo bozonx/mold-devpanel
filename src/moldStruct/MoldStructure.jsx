@@ -42,7 +42,7 @@ export default class MoldStructure extends React.Component {
     else if (schema.type == 'document') {
       return <ItemWrapper key={`${root}.${name}`} name={name}>
         <Document moldPath={convertFromSchemaToLodash(root)}
-                        mold={this.props.mold} />
+                  mold={this.props.mold} />
       </ItemWrapper>;
     }
     else if (schema.type == 'documentsCollection') {

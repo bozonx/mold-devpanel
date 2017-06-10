@@ -17,12 +17,11 @@ export default class DocumentsCollection extends React.Component {
 
     this.state = {
     };
-
-    this.instance = this.props.mold.child(this.props.moldPath);
-    this.storage = this.instance.realMold;
   }
 
   componentWillMount() {
+    this.instance = this.props.mold.child(this.props.moldPath);
+    this.storage = this.instance.realMold;
   }
 
   _renderCollection(collection, actionName, pageNum) {

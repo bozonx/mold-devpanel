@@ -38,7 +38,7 @@ export default class DocumentsCollection extends React.Component {
 
   _renderDocuments(name) {
     const moldPath = `${this.props.moldPath}.${name}`;
-    return <ItemWrapper key={index} name={name}>
+    return <ItemWrapper key={moldPath} name={name}>
       <Document moldPath={moldPath}
                 mold={this.props.mold} />
     </ItemWrapper>;

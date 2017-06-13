@@ -8,7 +8,7 @@ import SwitcherIcon from './controls/SwitcherIcon';
 
 export default class ItemWrapper extends React.Component {
   static propTypes = {
-    name: PropTypes.string,
+    name: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     hint: PropTypes.string,
     folded: PropTypes.bool,
     children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
